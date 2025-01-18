@@ -42,43 +42,6 @@ This script scrapes the **Top 100 Criterion Films** from a Letterboxd list.
 ```sh
 python scraper.py
 ```
-
-### 🔹 **Scraper Code:**
-```python
-import requests
-from bs4 import BeautifulSoup
-import json
-
-# URL of the webpage containing the Top 100 Criterion Films
-URL = "https://letterboxd.com/dave/list/the-criterion-collection-top-100/"
-
-def scrape_criterion_movies():
-    response = requests.get(URL)
-    soup = BeautifulSoup(response.text, "html.parser")
-    
-    movies = []
-    for item in soup.find_all("li", class_="poster-container"):
-        title = item.img["alt"]
-        poster = item.img["src"]
-        link = "https://letterboxd.com" + item.a["href"]
-
-        movies.append({
-            "title": title,
-            "poster": poster,
-            "link": link
-        })
-
-    with open("criterion_movies.json", "w") as f:
-        json.dump(movies, f, indent=4)
-
-    print("Scraping complete! Data saved to criterion_movies.json")
-
-scrape_criterion_movies()
-```
-This will create a `criterion_movies.json` file containing the **movie data**.
-
----
-
 ## 🌐 Step 2: Run the Flask API
 Now, we serve the JSON data using **Flask** so that Stremio can fetch it.
 
@@ -87,72 +50,12 @@ Now, we serve the JSON data using **Flask** so that Stremio can fetch it.
 python flask_api.py
 ```
 
-### 🔹 **Flask API Code:**
-```python
-from flask import Flask, jsonify
-import json
-
-app = Flask(__name__)
-
-with open("criterion_movies.json", "r") as f:
-    movies = json.load(f)
-
-@app.route("/criterion-movies", methods=["GET"])
-def get_movies():
-    return jsonify(movies)
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
-```
-- The **API runs on `http://localhost:5000/criterion-movies`**.
-- Test it by opening that URL in a browser.
-
----
-
 ## 🎬 Step 3: Run the Stremio Add-on
 This script integrates our Flask API with **Stremio Add-on SDK**.
 
 ### 🔹 **Run the Stremio Add-on:**
 ```sh
 python stremio_addon.py
-```
-
-### 🔹 **Stremio Add-on Code:**
-```python
-from stremio_addon_sdk import Manifest, Addon
-import requests
-
-MOVIES_API_URL = "http://localhost:5000/criterion-movies"
-movies = requests.get(MOVIES_API_URL).json()
-
-manifest = Manifest(
-    id="stremio-criterion",
-    version="1.0.0",
-    name="Criterion Collection",
-    description="Lists the Top 100 Criterion Films",
-    types=["movie"],
-    idPrefixes=["tt"]
-)
-
-addon = Addon(manifest)
-
-@addon.route("/meta/:type/:id.json")
-def meta(type, id):
-    for movie in movies:
-        if id in movie["title"].lower():
-            return {
-                "meta": {
-                    "id": id,
-                    "name": movie["title"],
-                    "poster": movie["poster"],
-                    "description": "A film from the Criterion Top 100 Collection.",
-                    "link": movie["link"]
-                }
-            }
-    return {}
-
-if __name__ == "__main__":
-    addon.serve(port=7000)
 ```
 
 ---

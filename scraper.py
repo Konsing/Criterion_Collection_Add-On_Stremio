@@ -2,8 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-# URL of the webpage containing the Top 100 Criterion Films
-URL = "https://letterboxd.com/dave/list/the-criterion-collection-top-100/"
+URL = "https://www.criterion.com/shop/browse/list?sort=year&decade=2020s,2010s,2000s,1990s,1980s&direction=desc"
 
 def scrape_criterion_movies():
     response = requests.get(URL)
@@ -11,17 +10,14 @@ def scrape_criterion_movies():
     
     movies = []
     for item in soup.find_all("li", class_="poster-container"):
-        title = item.img["alt"]  # Movie title from the image alt attribute
-        poster = item.img["src"]  # Poster URL
-        link = "https://letterboxd.com" + item.a["href"]  # Movie's Letterboxd page
-        
+        title = item.img["alt"]
+        poster = item.img["src"]
+
         movies.append({
             "title": title,
-            "poster": poster,
-            "link": link
+            "poster": poster
         })
 
-    # Save the scraped data as JSON
     with open("criterion_movies.json", "w") as f:
         json.dump(movies, f, indent=4)
 
