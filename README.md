@@ -1,99 +1,151 @@
-# 📽️ Criterion Collection Stremio Add-on
-
-A **Stremio add-on** that lists the **Top 100 Criterion Films** with metadata, posters, and streaming links. The add-on scrapes movie data, serves it via a **Flask API**, and integrates with **Stremio Add-on SDK** to display the films in Stremio.
-
----
-
-## 📌 Features
-- ✅ **Top 100 Criterion Films** listed inside Stremio.
-- ✅ **Metadata Display** (Title, Poster, Letterboxd Link).
-- ✅ **Simple Flask API** for serving movie data.
-- ✅ **Stremio Add-on SDK Integration** for seamless Stremio support.
-- ✅ **Free Hosting Options** (Can run locally or deploy on Render/Glitch).
-
----
-
-## 📁 Project Structure
 ```
-/criterion-stremio-addon
-│── scraper.py             # Scrapes movie data from Letterboxd
-│── criterion_movies.json  # Stores scraped movie data
-│── flask_api.py           # Flask API to serve movie data
-│── stremio_addon.py       # Stremio Add-on using the Stremio SDK
-│── README.md              # Project documentation
-```
+# 🎬 Criterion Collection Stremio Add-on
+
+A **Stremio add-on** that lists **Criterion Collection Films** with metadata, posters, and more. This add-on:
+- ✅ **Scrapes movie data** directly from **Criterion's website** using **Selenium-Stealth**.
+- ✅ **Serves the data via a Flask API**.
+- ✅ **Integrates with Stremio Add-on SDK** to display movies **with posters** inside Stremio.
 
 ---
 
-## 🚀 Getting Started
+## **📌 Features**
+- ✅ **Browse Criterion Collection movies** inside Stremio.
+- ✅ **Movie Metadata** (Title, Poster).
+- ✅ **Selenium-Stealth Scraper** to bypass bot protections.
+- ✅ **Flask API** to serve movie data.
+- ✅ **Stremio Add-on SDK Integration** for Stremio compatibility.
+- ✅ **Deployment options** (Run locally or host on Render/Glitch).
 
-### 1️⃣ Install Dependencies
-Make sure you have Python installed, then install the required packages:
-```sh
-pip install requests beautifulsoup4 flask stremio-addon-sdk
+---
+
+## **🚀 Getting Started**
+### **1️⃣ Install Dependencies**
+Ensure you have Python and Node.js installed.
+
+#### **Python Dependencies**
+Run the following command to install the required Python dependencies:
+```
+pip install selenium webdriver-manager selenium-stealth flask flask-cors
 ```
 
+#### **Node.js Dependencies**
+Run the following command to install the required Node.js dependencies:
+```
+npm install stremio-addon-sdk
+```
+
 ---
 
-## 🕵️‍♂️ Step 1: Scrape Criterion Movie List
-This script scrapes the **Top 100 Criterion Films** from a Letterboxd list.
+## **🕵️‍♂️ Step 1: Scrape Criterion Movie List**
+This script **scrapes movie data** directly from the **Criterion website**.
 
-### 🔹 **Run the scraper:**
-```sh
+### **🔹 Run the scraper**
+Run the scraper to generate `criterion_movies.json`:
+```
 python scraper.py
 ```
-## 🌐 Step 2: Run the Flask API
-Now, we serve the JSON data using **Flask** so that Stremio can fetch it.
-
-### 🔹 **Run the Flask API:**
-```sh
-python flask_api.py
-```
-
-## 🎬 Step 3: Run the Stremio Add-on
-This script integrates our Flask API with **Stremio Add-on SDK**.
-
-### 🔹 **Run the Stremio Add-on:**
-```sh
-python stremio_addon.py
-```
 
 ---
 
-## 📡 Step 4: Add to Stremio
+## **🌐 Step 2: Run the Flask API**
+Now, we serve the JSON data using **Flask** so that Stremio can fetch it.
+
+### **🔹 Run the Flask API**
+```
+python flask_api.py
+```
+- This will start the API at `http://localhost:5000/`
+- Visit `http://localhost:5000/criterion-movies` in your browser to see the data.
+
+---
+
+## **🎬 Step 3: Run the Stremio Add-on**
+This script integrates the Flask API with **Stremio Add-on SDK**.
+
+### **🔹 Run the Stremio Add-on**
+```
+node stremio_addon.js
+```
+- This will start the add-on at:
+  ```
+  http://localhost:7000/manifest.json
+  ```
+- Open this URL in your browser to confirm it’s working.
+
+---
+
+## **📡 Step 4: Add to Stremio**
 1. Open **Stremio**.
 2. Go to **Add-ons > Developer Mode > Add an Add-on**.
 3. Enter:
    ```
    http://localhost:7000/manifest.json
    ```
-4. Click **Install** and start browsing the **Criterion Collection** inside Stremio!
+4. Click **Install**, then check if movies appear inside Stremio!
 
 ---
 
-## 🔄 Hosting Options
-Right now, this runs **locally**. To host it for free:
-- Use **Render.com** or **Glitch** to deploy the Flask API.
-- Use **GitHub Pages** for hosting static JSON data.
+## **🚀 Fix: If Movies Are Not Showing in Stremio**
+If the add-on installs but **doesn’t show movies**, do the following:
+
+### **✅ Fix 1: Ensure `stremio_addon.js` is Correct**
+Make sure the `stremio_addon.js` script includes the `"type": "movie"` field in both the catalog and meta responses. Stremio requires this for proper functionality.
+
+### **✅ Fix 2: Check the Catalog Endpoint**
+Visit:
+```
+http://localhost:7000/catalog/movie/criterion.json
+```
+Make sure it returns a valid JSON response with movie data.
+
+### **✅ Fix 3: Check the Meta Endpoint**
+Visit:
+```
+http://localhost:7000/meta/movie/anora.json
+```
+Ensure the response includes the `"type": "movie"` field.
+
+### **✅ Fix 4: Restart Stremio & Reinstall the Add-on**
+1. **Remove the add-on** from Stremio.
+2. **Reinstall it** with:
+   ```
+   http://localhost:7000/manifest.json
+   ```
+3. **Restart Stremio completely** and check if movies appear.
 
 ---
 
-## 🎯 Next Steps
-✅ **Add Filtering by Genre, Director, or Year**  
-✅ **Optimize for Faster API Response**  
-✅ **Improve Metadata with More Details**  
+## **🔄 Hosting the Stremio Add-on**
+### **🔥 Deploy the Flask API**
+1. **Render.com** (Recommended)
+   - Create an account at [Render.com](https://render.com).
+   - Deploy your Flask API by connecting your GitHub repo.
+   - Set the `Start Command` as:
+     ```
+     python flask_api.py
+     ```
+   - Your API will be live at:
+     ```
+     https://your-app-name.onrender.com/
+     ```
+
+### **📡 Deploying the Stremio Add-on**
+1. **Glitch.com**
+   - Upload your `stremio_addon.js` file.
+   - Set the URL inside Stremio to your hosted Glitch project.
+
+2. **VPS (DigitalOcean, Linode, etc.)**
+   - Use **PM2** to keep the Stremio add-on running persistently.
 
 ---
 
-## ⚡ Summary
-| Step  | Action |
-|-------|--------|
-| 1️⃣   | Scrape **Top 100 Criterion Films** using BeautifulSoup |
-| 2️⃣   | Serve the data using a **Flask API** |
-| 3️⃣   | Build a **Stremio Add-on** with the Stremio SDK |
-| 4️⃣   | Install and use the add-on inside **Stremio** |
+## **🎯 Next Steps**
+✅ **Test the add-on inside Stremio.**  
+✅ **Deploy the API to Render/Glitch for public access.**  
+✅ **Add IMDb IDs & streaming links (for future updates).**  
 
 ---
 
-### 🚀 Need Help?
-If you need help setting up filters or deploying the add-on, feel free to ask! 🎬
+## **🚀 Need Help?**
+If you need help with deployment or adding new features, feel free to ask! 🎬🚀
+```
