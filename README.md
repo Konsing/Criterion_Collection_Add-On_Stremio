@@ -1,4 +1,4 @@
-```
+
 # 🎬 Criterion Collection Stremio Add-on
 
 A **Stremio add-on** that lists **Criterion Collection Films** with metadata, posters, and more. This add-on:
@@ -24,15 +24,15 @@ Ensure you have Python and Node.js installed.
 
 #### **Python Dependencies**
 Run the following command to install the required Python dependencies:
-```
+
 pip install selenium webdriver-manager selenium-stealth flask flask-cors
-```
+
 
 #### **Node.js Dependencies**
 Run the following command to install the required Node.js dependencies:
-```
+
 npm install stremio-addon-sdk
-```
+
 
 ---
 
@@ -41,9 +41,9 @@ This script **scrapes movie data** directly from the **Criterion website**.
 
 ### **🔹 Run the scraper**
 Run the scraper to generate `criterion_movies.json`:
-```
+
 python scraper.py
-```
+
 
 ---
 
@@ -51,9 +51,9 @@ python scraper.py
 Now, we serve the JSON data using **Flask** so that Stremio can fetch it.
 
 ### **🔹 Run the Flask API**
-```
+
 python flask_api.py
-```
+
 - This will start the API at `http://localhost:5000/`
 - Visit `http://localhost:5000/criterion-movies` in your browser to see the data.
 
@@ -63,13 +63,13 @@ python flask_api.py
 This script integrates the Flask API with **Stremio Add-on SDK**.
 
 ### **🔹 Run the Stremio Add-on**
-```
+
 node stremio_addon.js
-```
+
 - This will start the add-on at:
-  ```
+  
   http://localhost:7000/manifest.json
-  ```
+  
 - Open this URL in your browser to confirm it’s working.
 
 ---
@@ -78,9 +78,9 @@ node stremio_addon.js
 1. Open **Stremio**.
 2. Go to **Add-ons > Developer Mode > Add an Add-on**.
 3. Enter:
-   ```
+   
    http://localhost:7000/manifest.json
-   ```
+   
 4. Click **Install**, then check if movies appear inside Stremio!
 
 ---
@@ -93,24 +93,24 @@ Make sure the `stremio_addon.js` script includes the `"type": "movie"` field in 
 
 ### **✅ Fix 2: Check the Catalog Endpoint**
 Visit:
-```
+
 http://localhost:7000/catalog/movie/criterion.json
-```
+
 Make sure it returns a valid JSON response with movie data.
 
 ### **✅ Fix 3: Check the Meta Endpoint**
 Visit:
-```
+
 http://localhost:7000/meta/movie/anora.json
-```
+
 Ensure the response includes the `"type": "movie"` field.
 
 ### **✅ Fix 4: Restart Stremio & Reinstall the Add-on**
 1. **Remove the add-on** from Stremio.
 2. **Reinstall it** with:
-   ```
+   
    http://localhost:7000/manifest.json
-   ```
+   
 3. **Restart Stremio completely** and check if movies appear.
 
 ---
@@ -121,13 +121,13 @@ Ensure the response includes the `"type": "movie"` field.
    - Create an account at [Render.com](https://render.com).
    - Deploy your Flask API by connecting your GitHub repo.
    - Set the `Start Command` as:
-     ```
+     
      python flask_api.py
-     ```
+     
    - Your API will be live at:
-     ```
+     
      https://your-app-name.onrender.com/
-     ```
+     
 
 ### **📡 Deploying the Stremio Add-on**
 1. **Glitch.com**
@@ -148,4 +148,3 @@ Ensure the response includes the `"type": "movie"` field.
 
 ## **🚀 Need Help?**
 If you need help with deployment or adding new features, feel free to ask! 🎬🚀
-```
