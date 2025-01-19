@@ -25,14 +25,16 @@ Ensure you have Python and Node.js installed.
 #### **Python Dependencies**
 Run the following command to install the required Python dependencies:
 
+```sh
 pip install selenium webdriver-manager selenium-stealth flask flask-cors
-
+```
 
 #### **Node.js Dependencies**
 Run the following command to install the required Node.js dependencies:
 
+```sh
 npm install stremio-addon-sdk
-
+```
 
 ---
 
@@ -42,8 +44,9 @@ This script **scrapes movie data** directly from the **Criterion website**.
 ### **🔹 Run the scraper**
 Run the scraper to generate `criterion_movies.json`:
 
+```sh
 python scraper.py
-
+```
 
 ---
 
@@ -52,7 +55,9 @@ Now, we serve the JSON data using **Flask** so that Stremio can fetch it.
 
 ### **🔹 Run the Flask API**
 
+```sh
 python flask_api.py
+```
 
 - This will start the API at `http://localhost:5000/`
 - Visit `http://localhost:5000/criterion-movies` in your browser to see the data.
@@ -64,7 +69,9 @@ This script integrates the Flask API with **Stremio Add-on SDK**.
 
 ### **🔹 Run the Stremio Add-on**
 
+```sh
 node stremio_addon.js
+```
 
 - This will start the add-on at:
   
@@ -122,7 +129,9 @@ Ensure the response includes the `"type": "movie"` field.
    - Deploy your Flask API by connecting your GitHub repo.
    - Set the `Start Command` as:
      
-     python flask_api.py
+   ```sh
+   python flask_api.py
+   ```
      
    - Your API will be live at:
      
@@ -140,9 +149,9 @@ Ensure the response includes the `"type": "movie"` field.
 ---
 
 ## **🎯 Next Steps**
+✅ **Add IMDb IDs (Maybe streaming links?) so that it works with torrentio, jackettio, etc.**  
 ✅ **Test the add-on inside Stremio.**  
 ✅ **Deploy the API to Render/Glitch for public access.**  
-✅ **Add IMDb IDs & streaming links (for future updates).**  
 
 ---
 
