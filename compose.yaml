@@ -11,4 +11,4 @@ services:
             - 5000:5000
         image: flask
         environment:
-            - OMDB_API_KEY=[your-api-key-here]
+            - OMDB_API_KEY=[your-api-key-here] # Add it here if working
