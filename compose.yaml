@@ -10,3 +10,5 @@ services:
         ports:
             - 5000:5000
         image: flask
+        environment:
+            - OMDB_API_KEY=[your-api-key-here]

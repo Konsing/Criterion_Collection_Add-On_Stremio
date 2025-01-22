@@ -3,3 +3,6 @@ node_modules/
 
 # Python
 venv/
+
+# Env file 
+.env

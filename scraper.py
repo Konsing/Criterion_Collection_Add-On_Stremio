@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -6,13 +8,23 @@ from selenium_stealth import stealth
 import time
 from bs4 import BeautifulSoup
 import json
+import requests
 
-# Set up Chrome options to avoid bot detection
+# Load the .env file
+load_dotenv()
+
+# OMDb API Key
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+
+if not OMDB_API_KEY:
+    raise ValueError("Key is not working, check env file")
+
+# Set up Chrome options
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run without opening a window
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--disable-blink-features=AutomationControlled")  # Helps avoid detection
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 
 # Launch Chrome WebDriver
 service = Service(ChromeDriverManager().install())
@@ -28,7 +40,7 @@ stealth(driver,
     fix_hairline=True,
 )
 
-# Load the page
+# Load the Criterion website
 URL = "https://www.criterion.com/shop/browse/list?sort=year&decade=2020s,2010s,2000s,1990s,1980s&direction=desc"
 driver.get(URL)
 
@@ -41,6 +53,17 @@ soup = BeautifulSoup(driver.page_source, "html.parser")
 # Close the browser
 driver.quit()
 
+# Function to get IMDb ID using OMDb API
+def get_imdb_id(movie_title):
+    omdb_url = f"http://www.omdbapi.com/?apikey={OMDB_API_KEY}&t={movie_title.replace(' ', '+')}"
+    
+    response = requests.get(omdb_url)
+    data = response.json()
+    
+    if data.get("Response") == "True" and "imdbID" in data:
+        return data["imdbID"]  # Return the IMDb ID
+    return None  # Return None if IMDb ID not found
+
 # Scrape movie data
 movies = []
 for item in soup.find_all("tr", class_="gridFilm"):
@@ -51,7 +74,11 @@ for item in soup.find_all("tr", class_="gridFilm"):
         title = title_tag.text.strip()
         poster = img_tag["src"]
 
+        # Fetch IMDb ID from OMDb
+        imdb_id = get_imdb_id(title)
+
         movies.append({
+            "id": imdb_id, # Use IMDb ID if available
             "title": title,
             "poster": poster
         })

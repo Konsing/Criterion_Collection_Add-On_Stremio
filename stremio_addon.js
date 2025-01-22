@@ -17,7 +17,7 @@ const manifest = {
     "description": "Lists Criterion Collection movies with metadata and posters.",
     "resources": ["catalog", "meta"],
     "types": ["movie"],
-    "idPrefixes": ["tt"],
+    "idPrefixes": ["tt"],  // Ensure this matches IMDb ID prefix
     "catalogs": [
         {
             "type": "movie",
@@ -27,13 +27,13 @@ const manifest = {
     ]
 };
 
-// Format the catalog properly for Stremio
+// Format the catalog properly for Stremio  
 const catalog = movies.map(movie => ({
-    "id": movie.title.toLowerCase().replace(/\s+/g, "-"),
+    "id": movie.id,
     "name": movie.title,
     "poster": movie.poster,
-    "type": "movie",  // FIX: Ensure "type" is included, NEEDED to work
-    "description": "A film from the Criterion Collection."
+    "type": "movie",
+    "description": movie.description || "A film from the Criterion Collection."
 }));
 
 // Build the Stremio Add-on
@@ -49,15 +49,16 @@ builder.defineCatalogHandler(({ type, id }) => {
 
 // Define the meta handler
 builder.defineMetaHandler(({ id }) => {
-    const movie = movies.find(m => id === m.title.toLowerCase().replace(/\s+/g, "-"));
+    const movie = movies.find(m => m.id === id || id === m.title.toLowerCase().replace(/\s+/g, "-"));
+    
     if (movie) {
         return Promise.resolve({
             "meta": {
-                "id": id,
+                "id": movie.id || id,
                 "name": movie.title,
                 "poster": movie.poster,
-                "type": "movie",  // FIX: Ensure "type" is included, NEEDED to work
-                "description": "A film from the Criterion Collection."
+                "type": "movie",
+                "description": movie.description || "A film from the Criterion Collection."
             }
         });
     }
