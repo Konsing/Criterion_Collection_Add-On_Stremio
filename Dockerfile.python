@@ -1,0 +1,20 @@
+# Use an official Python image
+FROM python:3
+
+# Create a working directory
+WORKDIR /usr/src/app
+
+# Copy everything
+COPY . ./
+
+# Create & activate a virtual environment
+RUN python -m venv /venv
+
+# Install Python deps
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose Flask port (e.g. 5000)
+EXPOSE 5000
+
+# Run Flask in container
+CMD [ "python", "flask_api.py" ]
