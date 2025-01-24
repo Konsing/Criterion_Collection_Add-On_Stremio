@@ -5,10 +5,14 @@ const path = require("path");
 // ✅ Load movies dynamically every time
 const loadMovies = () => {
     try {
-        const filePath = path.join(__dirname, "criterion_movies.json");
+        const filePath = path.resolve(__dirname, "criterion_movies.json");
+        if (!fs.existsSync(filePath)) {
+            console.error("❌ Error: criterion_movies.json not found!");
+            return [];
+        }
         return JSON.parse(fs.readFileSync(filePath, "utf-8"));
     } catch (err) {
-        console.error("Error reading criterion_movies.json:", err);
+        console.error("❌ Error reading criterion_movies.json:", err);
         return [];
     }
 };
@@ -72,10 +76,15 @@ builder.defineMetaHandler(({ id }) => {
     return Promise.reject("Not found");
 });
 
-// ✅ Vercel Serverless API Export
+// ✅ Export for Vercel (Serverless API)
 module.exports = (req, res) => {
-    const interface = builder.getInterface();
-    return interface(req, res);
+    try {
+        const interface = builder.getInterface();
+        return interface(req, res);
+    } catch (err) {
+        console.error("❌ Server error:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 };
 
 console.log("✅ Stremio Add-on is running on Vercel!");
