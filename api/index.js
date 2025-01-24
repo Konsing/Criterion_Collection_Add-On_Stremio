@@ -1,10 +1,12 @@
-const { addonBuilder, getRouter } = require("stremio-addon-sdk");
+// File: api/index.js
+const { addonBuilder, requestHandler } = require("stremio-addon-sdk");
 const fs = require("fs");
 const path = require("path");
 
+// Load criterion_movies.json
 let movies = [];
 try {
-  // Adjust path if needed
+  // If the file is in api/, use path.join(__dirname, "criterion_movies.json")
   const filePath = path.join(__dirname, "criterion_movies.json");
   movies = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 } catch (err) {
@@ -29,7 +31,7 @@ const manifest = {
   ]
 };
 
-// Prepare the catalog
+// Prepare catalog array
 const catalog = movies.map(movie => ({
   id: movie.id,
   name: movie.title,
@@ -38,10 +40,10 @@ const catalog = movies.map(movie => ({
   description: movie.description || "A film from the Criterion Collection."
 }));
 
-// Build add-on
+// Create the add-on builder
 const builder = new addonBuilder(manifest);
 
-// Catalog Handler
+// Define Catalog Handler
 builder.defineCatalogHandler(({ type, id }) => {
   if (type === "movie" && id === "criterion") {
     return Promise.resolve({ metas: catalog });
@@ -49,7 +51,7 @@ builder.defineCatalogHandler(({ type, id }) => {
   return Promise.resolve({ metas: [] });
 });
 
-// Meta Handler
+// Define Meta Handler
 builder.defineMetaHandler(({ id }) => {
   const movie = movies.find(m => m.id === id);
   if (movie) {
@@ -66,19 +68,12 @@ builder.defineMetaHandler(({ id }) => {
   return Promise.reject("Not found");
 });
 
-// Convert builder to router
+// Convert the built add-on to a request handler
 const addonInterface = builder.getInterface();
-const router = getRouter(addonInterface);
+const handleRequest = requestHandler(addonInterface);
 
-// EXPORT with a callback
+// Export your serverless function
 module.exports = (req, res) => {
-  router(req, res, (err) => {
-    if (err) {
-      res.statusCode = 500;
-      res.end("Error: " + err);
-    } else {
-      res.statusCode = 404;
-      res.end("Not found");
-    }
-  });
+  // This automatically handles 404s & errors
+  handleRequest(req, res);
 };
