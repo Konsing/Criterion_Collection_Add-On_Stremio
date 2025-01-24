@@ -5,7 +5,7 @@ FROM node:20
 WORKDIR /usr/src/app
 
 # Copy everything
-COPY . ./app/
+COPY . ./
 
 # Install dependencies
 RUN npm ci
