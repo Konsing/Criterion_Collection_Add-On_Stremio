@@ -4,7 +4,7 @@
   "description": "A **Stremio add-on** that lists the **Top 100 Criterion Films** with metadata, posters, and streaming links. The add-on scrapes movie data, serves it via a **Flask API**, and integrates with **Stremio Add-on SDK** to display the films in Stremio.",
   "main": "stremio_addon.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api/index.js"
   },
   "keywords": [],
   "author": "",
