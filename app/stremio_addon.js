@@ -15,6 +15,7 @@ const manifest = {
     "version": "1.0.0",
     "name": "Criterion Collection",
     "description": "Lists Criterion Collection movies with metadata and posters.",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5d/The_Criterion_Collection_Logo.svg",
     "resources": ["catalog", "meta"],
     "types": ["movie"],
     "idPrefixes": ["tt"],  // Ensure this matches IMDb ID prefix
@@ -71,4 +72,4 @@ const { serveHTTP } = require("stremio-addon-sdk");
 
 serveHTTP(addonInterface, { port: 7000 });
 
-console.log(" Stremio Add-on running at: http://localhost:7000/manifest.json");
+console.log(" Stremio Addon running on https://criterion-collection-add-on-stremio-qvt7.onrender.com/manifest.json");
