@@ -5,9 +5,8 @@
 
 A **Stremio add-on** that lists **Criterion Collection Films** with metadata, posters, and more. This add-on:
 - ✅ **Scrapes movie data** directly from **Criterion's website** using **Selenium-Stealth**.
-- ✅ **Serves the data via a Flask API**.
+- ✅ **Loads movie data dynamically from** `criterion_movies.json` inside Stremio.
 - ✅ **Integrates with Stremio Add-on SDK** to display movies **with posters** inside Stremio.
-- ✅ **Now supports Docker for easy deployment!** 🚢
 
 ---
 
@@ -15,9 +14,8 @@ A **Stremio add-on** that lists **Criterion Collection Films** with metadata, po
 - ✅ **Browse Criterion Collection movies** inside Stremio.
 - ✅ **Movie Metadata** (Title, Poster, IMDb ID).
 - ✅ **Selenium-Stealth Scraper** to bypass bot protections.
-- ✅ **Flask API** to serve movie data.
-- ✅ **Stremio Add-on SDK Integration** for Stremio compatibility.
-- ✅ **Deployment options** (Local, Render, Glitch, Docker).
+- ✅ **Dynamically loads** `criterion_movies.json` for updates (No need to restart Stremio).
+- ✅ **Deployment options** (Glitch, Docker).
 
 ---
 
@@ -64,32 +62,19 @@ python scraper.py
 
 ---
 
-## **🌐 Step 2: Run the Flask API**
-Now, we serve the JSON data using **Flask** so that Stremio can fetch it.
-
-### **🔹 Run the Flask API**
-```sh
-python flask_api.py
-```
-- The API will start at **`http://localhost:5000/`**  
-- Visit **`http://localhost:5000/criterion-movies`** in your browser to see the data.
-
----
-
-## **🎬 Step 3: Run the Stremio Add-on**
-This script integrates the Flask API with **Stremio Add-on SDK**.
+## **🎬 Step 2: Run the Stremio Add-on**
+This script integrates the scraped data with Stremio Add-on SDK.
 
 ### **🔹 Run the Stremio Add-on**
 ```sh
 node stremio_addon.js
 ```
-- The add-on will start at:  
-  **http://localhost:7000/manifest.json**
+- The add-on will start at: **`http://localhost:7000/manifest.json`**  
 - Open this URL in your browser to confirm it’s working.
 
 ---
 
-## **📡 Step 4: Add to Stremio**
+## **📡 Step 3: Add to Stremio**
 1. Open **Stremio**.
 2. Go to **Add-ons > Developer Mode > Add an Add-on**.
 3. Enter:
@@ -101,15 +86,9 @@ node stremio_addon.js
 ---
 
 # **🐳 Running with Docker**
-## **1️⃣ Build Docker Images**
-We have two Dockerfiles:
-- **`Dockerfile.node`** for the Stremio add-on.
-- **`Dockerfile.python`** for the Flask API.
+## **1️⃣ Build Docker Image**
 
-### **🔹 Build the Flask API Image**
-```sh
-docker build -t flask -f Dockerfile.python .
-```
+- **`Dockerfile.node`** for the Stremio add-on.
 
 ### **🔹 Build the Stremio Add-on Image**
 ```sh
@@ -139,11 +118,10 @@ services:
 ---
 
 ## **3️⃣ Run Everything with Docker Compose**
-To start **both containers** (Flask API & Stremio Add-on) at the same time:
+To start the **container** (Stremio Add-on):
 ```sh
 docker-compose up
 ```
-- Flask API runs at: **http://localhost:5000/**
 - Stremio Add-on runs at: **http://localhost:7000/manifest.json**
 
 ---
@@ -181,19 +159,6 @@ Ensure the response includes the `"type": "movie"` field.
 ---
 
 ## **🔄 Hosting the Stremio Add-on**
-### **🔥 Deploy the Flask API**
-1. **Render.com** (Recommended)
-   - Create an account at [Render.com](https://render.com).
-   - Deploy your Flask API by connecting your GitHub repo.
-   - Set the `Start Command` as:
-     ```sh
-     python flask_api.py
-     ```
-   - Your API will be live at:
-     ```
-     https://your-app-name.onrender.com/
-     ```
-
 ### **📡 Deploying the Stremio Add-on**
 1. **Glitch.com**
    - Upload your `stremio_addon.js` file.
@@ -205,10 +170,8 @@ Ensure the response includes the `"type": "movie"` field.
 ---
 
 ## **🎯 Next Steps**
-✅ **Add IMDb IDs** (Now works with **Torrentio, Jackettio, etc.**)  
-✅ **Test the add-on inside Stremio.**  
 ✅ **Deploy the API to Render/Glitch for public access.**  
-✅ **Now supports Docker deployment!**  
+✅ **Add different sorting categories (by decade, genre, director, etc.).**  
 
 ---
 
@@ -223,13 +186,11 @@ If you need help with deployment, Docker, or adding new features, feel free to a
 pip install -r requirements.txt
 npm install
 python scraper.py
-python flask_api.py
 node stremio_addon.js
 ```
 
 #### **🐳 Docker Setup**
 ```sh
-docker build -t flask -f Dockerfile.python .
 docker build -t node -f Dockerfile.node .
 docker-compose up
 ```
