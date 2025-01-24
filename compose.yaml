@@ -4,11 +4,3 @@ services:
         ports:
             - 7000:7000
         image: node
-
-    flask:
-        container_name: flask_app
-        ports:
-            - 5000:5000
-        image: flask
-        env_file:
-            - .env
