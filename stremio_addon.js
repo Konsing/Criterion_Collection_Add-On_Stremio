@@ -54,7 +54,7 @@ builder.defineMetaHandler(({ id }) => {
     if (movie) {
         return Promise.resolve({
             "meta": {
-                "id": movie.id || id,
+                "id": movie.id,
                 "name": movie.title,
                 "poster": movie.poster,
                 "type": "movie",
