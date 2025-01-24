@@ -72,4 +72,4 @@ const { serveHTTP } = require("stremio-addon-sdk");
 
 serveHTTP(addonInterface, { port: 7000 });
 
-console.log(" Stremio Add-on running at: http://localhost:7000/manifest.json");
+console.log(" Stremio Addon running on https://criterion-collection-add-on-stremio-qvt7.onrender.com/manifest.json");
