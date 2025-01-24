@@ -69,6 +69,13 @@ builder.defineMetaHandler(({ id }) => {
 const addonInterface = builder.getInterface();
 const { serveHTTP } = require("stremio-addon-sdk");
 
-serveHTTP(addonInterface, { port: 7000 });
+// serveHTTP(addonInterface, { port: 7000 });
 
-console.log(" Stremio Add-on running at: http://localhost:7000/manifest.json");
+// console.log(" Stremio Add-on running at: http://localhost:7000/manifest.json");
+
+// ✅ Ensure Vercel runs the server properly
+module.exports = (req, res) => {
+    serveHTTP(builder.getInterface(), { req, res });
+};
+
+console.log("✅ Stremio Add-on is running on Vercel!");
