@@ -6,13 +6,24 @@ const path = require("path");
 const loadMovies = () => {
     try {
         const filePath = path.resolve(__dirname, "criterion_movies.json");
+        
         if (!fs.existsSync(filePath)) {
             console.error("❌ Error: criterion_movies.json not found!");
             return [];
         }
-        return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+        const fileContent = fs.readFileSync(filePath, "utf-8");
+
+        // ✅ Validate JSON to prevent crashes
+        const parsedData = JSON.parse(fileContent);
+        if (!Array.isArray(parsedData)) {
+            console.error("❌ Error: criterion_movies.json is not an array!");
+            return [];
+        }
+
+        return parsedData;
     } catch (err) {
-        console.error("❌ Error reading criterion_movies.json:", err);
+        console.error("❌ JSON Parsing Error:", err);
         return [];
     }
 };
