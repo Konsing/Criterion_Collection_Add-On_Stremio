@@ -1,15 +1,16 @@
 {
   "name": "criterion-collection-add-on",
   "version": "1.0.0",
-  "description": "A Stremio add-on that lists the Top 100 Criterion Films with metadata, posters, and streaming links. The add-on scrapes movie data and integrates with Stremio Add-on SDK to display the films in Stremio.",
+  "description": "A Stremio add-on for Criterion Collection",
   "main": "stremio_addon.js",
   "scripts": {
     "start": "node stremio_addon.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "stremio-addon-sdk": "^1.6.10"
+    "stremio-addon-sdk": "^1.6.10",
+    "node-fetch": "^3.3.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

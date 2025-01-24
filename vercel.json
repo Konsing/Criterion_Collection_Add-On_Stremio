@@ -1,6 +1,9 @@
 {
     "version": 2,
     "functions": {
+        "api/*.js": {
+            "runtime": "nodejs18.x"
+        },
         "stremio_addon.js": {
             "runtime": "nodejs18.x"
         }
