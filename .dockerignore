@@ -3,5 +3,3 @@ venv
 
 .git
 .gitignore
-
-.env
