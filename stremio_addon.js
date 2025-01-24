@@ -1,16 +1,12 @@
 const { addonBuilder } = require("stremio-addon-sdk");
-const fetch = require("node-fetch");
+const fs = require("fs");
 
-// Function to dynamically fetch movie data from Vercel's API folder
-async function loadMovies() {
-    try {
-        const response = await fetch("https://your-vercel-app.vercel.app/api/criterion_movies.json");
-        if (!response.ok) throw new Error("Failed to fetch movie data");
-        return await response.json();
-    } catch (error) {
-        console.error("Error fetching movies:", error);
-        return [];
-    }
+// Load movies from JSON
+let movies = [];
+try {
+    movies = JSON.parse(fs.readFileSync("criterion_movies.json", "utf-8"));
+} catch (err) {
+    console.error("Error reading criterion_movies.json:", err);
 }
 
 // Define the Stremio manifest
@@ -31,28 +27,28 @@ const manifest = {
     ]
 };
 
+// Format the catalog properly for Stremio  
+const catalog = movies.map(movie => ({
+    "id": movie.id,
+    "name": movie.title,
+    "poster": movie.poster,
+    "type": "movie",
+    "description": movie.description || "A film from the Criterion Collection."
+}));
+
 // Build the Stremio Add-on
 const builder = new addonBuilder(manifest);
 
-// Define the catalog handler (Loads movies dynamically)
-builder.defineCatalogHandler(async ({ type, id }) => {
+// Define the catalog handler
+builder.defineCatalogHandler(({ type, id }) => {
     if (type === "movie" && id === "criterion") {
-        const movies = await loadMovies();  // Fetch latest movies
-        const catalog = movies.map(movie => ({
-            "id": movie.id,
-            "name": movie.title,
-            "poster": movie.poster,
-            "type": "movie",
-            "description": movie.description || "A film from the Criterion Collection."
-        }));
         return Promise.resolve({ metas: catalog });
     }
     return Promise.reject("Not supported type");
 });
 
-// Define the meta handler (Fetches movie details dynamically)
-builder.defineMetaHandler(async ({ id }) => {
-    const movies = await loadMovies();  // Fetch latest movies
+// Define the meta handler
+builder.defineMetaHandler(({ id }) => {
     const movie = movies.find(m => m.id === id || id === m.title.toLowerCase().replace(/\s+/g, "-"));
     
     if (movie) {
@@ -69,40 +65,10 @@ builder.defineMetaHandler(async ({ id }) => {
     return Promise.reject("Not found");
 });
 
-// ✅ API Route for Vercel (Handles requests properly)
-module.exports = async (req, res) => {
-    const { pathname } = new URL(req.url, `http://${req.headers.host}`);
+// Serve the add-on
+const addonInterface = builder.getInterface();
+const { serveHTTP } = require("stremio-addon-sdk");
 
-    if (pathname === "/manifest.json") {
-        return res.json(builder.getInterface().manifest);
-    } else if (pathname.startsWith("/catalog/movie/criterion.json")) {
-        const movies = await loadMovies();
-        const catalog = movies.map(movie => ({
-            "id": movie.id,
-            "name": movie.title,
-            "poster": movie.poster,
-            "type": "movie",
-            "description": movie.description || "A film from the Criterion Collection."
-        }));
-        return res.json({ metas: catalog });
-    } else if (pathname.startsWith("/meta/movie/")) {
-        const movies = await loadMovies();
-        const id = pathname.split("/").pop().replace(".json", "");
-        const movie = movies.find(m => m.id === id);
+serveHTTP(addonInterface, { port: 7000 });
 
-        if (movie) {
-            return res.json({
-                meta: {
-                    id: movie.id,
-                    name: movie.title,
-                    poster: movie.poster,
-                    type: "movie",
-                    description: movie.description || "A film from the Criterion Collection."
-                }
-            });
-        }
-        return res.status(404).json({ error: "Movie not found" });
-    }
-
-    res.status(404).json({ error: "Not found" });
-};
+console.log(" Stremio Add-on running at: http://localhost:7000/manifest.json");
