@@ -2,8 +2,8 @@
 
    # **🎬 Criterion Collection Stremio Add-on**
 
-   <img src="Criterion_Collection.png" alt="Alt text" width="450">
-   <img src="Criterion_Collection_Home.png" alt="Alt text" width="450">
+   <img src="Criterion_Collection.png" alt="Alt text" width="800">
+   <img src="Criterion_Collection_Home.png" alt="Alt text" width="800">
 
    A **Stremio add-on** that lists **Criterion Collection Films** with metadata, posters, and more. This add-on:
    - ✅ **Scrapes movie data** directly from **Criterion's website** using **Selenium-Stealth**.
