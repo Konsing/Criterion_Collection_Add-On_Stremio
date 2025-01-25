@@ -1,7 +1,9 @@
-
    ---
 
    # **🎬 Criterion Collection Stremio Add-on**
+
+   <img src="Criterion_Collection.png" alt="Alt text" width="450">
+   <img src="Criterion_Collection_Home.png" alt="Alt text" width="450">
 
    A **Stremio add-on** that lists **Criterion Collection Films** with metadata, posters, and more. This add-on:
    - ✅ **Scrapes movie data** directly from **Criterion's website** using **Selenium-Stealth**.
@@ -10,16 +12,33 @@
 
    ---
 
+   ## **📡 Now Hosted on Render**
+   The add-on is now **hosted on Render.com** and can be added to **Stremio** using the following link:
+
+   🔗 **[Criterion Collection Add-on for Stremio](https://criterion-collection-add-on-stremio-qvt7.onrender.com/manifest.json)**
+
+   ### **How to Add to Stremio (For Users)**
+   1. Open **Stremio**.
+   2. Go to **Settings > Add-ons**.
+   3. Click **"Install via URL"** and paste the following link:
+      ```
+      https://criterion-collection-add-on-stremio-qvt7.onrender.com/manifest.json
+      ```
+   4. Click **"Install"**, and you're all set! 🎬
+
+   ---
+
    ## **📌 Features**
    - ✅ **Browse Criterion Collection movies** inside Stremio.
    - ✅ **Movie Metadata** (Title, Poster, IMDb ID).
    - ✅ **Selenium-Stealth Scraper** to bypass bot protections.
    - ✅ **Dynamically loads** `criterion_movies.json` for updates (No need to restart Stremio).
-   - ✅ **Deployment options** (Glitch, Docker).
+   - ✅ **Deployment options** (Render, Glitch, Docker).
 
    ---
 
-   ## **🚀 Getting Started**
+   ## **🚀 Getting Started (For Developers)**
+
    ### **1️⃣ Clone the Repository**
    First, clone the repository:
    ```sh
@@ -86,6 +105,7 @@
    ---
 
    # **🐳 Running with Docker**
+
    ## **1️⃣ Build Docker Image**
 
    - **`Dockerfile.node`** for the Stremio add-on.
@@ -97,7 +117,7 @@
 
    ---
 
-   ## **2️⃣ Set Up Your API Key**
+   ## **2️⃣ Set Up Your API Key (If you want to use your own)**
    You need to **insert your OMDb API key** in **`.env`** or **`compose.yaml`**.
 
    #### **🔹 Option 1: Using `.env`**
@@ -134,7 +154,6 @@
 
    ### **✅ Fix 2: Check the Catalog Endpoint**
    Visit:
-
    ```
    http://localhost:7000/catalog/movie/criterion.json
    ```
@@ -142,7 +161,6 @@
 
    ### **✅ Fix 3: Check the Meta Endpoint**
    Visit:
-
    ```
    http://localhost:7000/meta/movie/tt28607951.json
    ```
@@ -159,19 +177,21 @@
    ---
 
    ## **🔄 Hosting the Stremio Add-on**
-   ### **📡 Deploying the Stremio Add-on**
-   1. **Glitch.com**
-      - Upload your `stremio_addon.js` file.
-      - Set the URL inside Stremio to your hosted Glitch project.
 
+   ### **📡 Deploying the Stremio Add-on**
+   1. **Render.com (Current Hosting)**
+      - The add-on is already hosted on Render at:
+      ```
+      https://criterion-collection-add-on-stremio-qvt7.onrender.com/manifest.json
+      ```
    2. **VPS (DigitalOcean, Linode, etc.)**
       - Use **PM2** to keep the Stremio add-on running persistently.
 
    ---
 
    ## **🎯 Next Steps**
-   ✅ **Deploy the API to Render/Glitch for public access.**  
-   ✅ **Add different sorting categories (by decade, genre, director, etc.).**  
+   ✅ **Improve the film descriptions to provide better metadata.**  
+   ❌ **Explore alternatives to Render for hosting in the future.**  
 
    ---
 
@@ -199,4 +219,3 @@
 
    ---
 
-   This README **now supports Docker** and includes **a clear setup guide**. Let me know if you need any changes! 🚀🔥
