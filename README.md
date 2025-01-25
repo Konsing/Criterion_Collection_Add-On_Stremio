@@ -1,9 +1,27 @@
+   # **🎬 Criterion Collection Stremio Add-on**  
+
+   Enhance your **Stremio experience** with a dedicated add-on for the **Criterion Collection**. Browse classic and contemporary films with **high-quality metadata**, **posters**, and seamless **integration** into Stremio.  
+
    ---
 
-   # **🎬 Criterion Collection Stremio Add-on**
+   ## **🖥️ Stremio Interface Preview**  
 
-   <img src="Criterion_Collection.png" alt="Alt text" width="800">
-   <img src="Criterion_Collection_Home.png" alt="Alt text" width="800">
+   ### **🔹 Discover Page View**  
+   > Explore the Criterion Collection directly within Stremio.  
+
+   <img src="Criterion_Collection.png" alt="Criterion Collection Discover Page" width="800">
+   </p>  
+
+   ---
+
+   ### **🏠 Home Page View**  
+   > See the collection featured on your Stremio home screen.  
+
+   <img src="Criterion_Collection_Home.png" alt="Criterion Collection Home Page" width="800">
+   </p>  
+
+   ---
+
 
    A **Stremio add-on** that lists **Criterion Collection Films** with metadata, posters, and more. This add-on:
    - ✅ **Scrapes movie data** directly from **Criterion's website** using **Selenium-Stealth**.
@@ -14,8 +32,6 @@
 
    ## **📡 Now Hosted on Render**
    The add-on is now **hosted on Render.com** and can be added to **Stremio** using the following link:
-
-   🔗 **[Criterion Collection Add-on for Stremio](https://criterion-collection-add-on-stremio-qvt7.onrender.com/manifest.json)**
 
    ### **How to Add to Stremio (For Users)**
    1. Open **Stremio**.
