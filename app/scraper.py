@@ -18,6 +18,7 @@ from selenium_stealth import stealth
 ################################################################################
 load_dotenv()
 OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+
 if not OMDB_API_KEY:
     raise ValueError("OMDB_API_KEY missing in .env")
 
@@ -28,7 +29,6 @@ chrome_options = Options()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
@@ -46,15 +46,10 @@ stealth(
 ################################################################################
 # 3. Load Criterion page & scroll fully to capture all films
 ################################################################################
-URL = (
-    "https://www.criterion.com/shop/browse/list"
-    "?sort=year&decade=2020s,2010s,2000s,1990s,1980s"
-    "&direction=desc"
-)
+URL = "https://www.criterion.com/shop/browse/list?sort=year&decade=2020s,2010s,2000s,1990s,1980s&direction=desc"
 driver.get(URL)
 time.sleep(3)
 
-# Keep scrolling until the page no longer grows
 prev_height = 0
 while True:
     driver.find_element("tag name", "body").send_keys(Keys.END)
@@ -68,23 +63,25 @@ soup = BeautifulSoup(driver.page_source, "html.parser")
 driver.quit()
 
 ################################################################################
-# 4. Helper: Grab OMDb data by Title + Year (fallback: Title alone)
+# 4. OMDb Helper Functions
 ################################################################################
+
 def fetch_omdb_data(title, year):
     """
-    Tries (title + year) first. If no match, tries just (title).
-    Returns OMDb JSON or None if not found.
+    Fetches movie details using OMDb API.
+    - First tries Title + Year
+    - Then falls back to just Title
     """
     base_url = "http://www.omdbapi.com/"
 
-    # 1) Attempt: Title + Year
+    # 1️⃣ Attempt: Title + Year
     params1 = {"apikey": OMDB_API_KEY, "t": title, "y": year}
     r1 = requests.get(base_url, params=params1)
     d1 = r1.json()
     if d1.get("Response") == "True":
-        return d1  # got it
+        return d1
 
-    # 2) Attempt: Title alone
+    # 2️⃣ Attempt: Title alone
     params2 = {"apikey": OMDB_API_KEY, "t": title}
     r2 = requests.get(base_url, params=params2)
     d2 = r2.json()
@@ -98,6 +95,8 @@ def fetch_omdb_data(title, year):
 # 5. Scrape each film, query OMDb for IMDb ID & extra fields
 ################################################################################
 movies = []
+missing_movies = []
+
 rows = soup.find_all("tr", class_="gridFilm")
 
 for row in rows:
@@ -118,7 +117,7 @@ for row in rows:
     img = img_td.find("img")
     poster = img["src"] if img else None
 
-    # Use OMDb to get "tt..." plus overview, rating, etc.
+    # Use OMDb to get IMDb ID & more details
     omdb_json = fetch_omdb_data(title, year)
 
     if omdb_json:
@@ -127,12 +126,18 @@ for row in rows:
         imdb_rating = omdb_json.get("imdbRating", "N/A")
         runtime = omdb_json.get("Runtime", "Unknown")
         genre = omdb_json.get("Genre", "Unknown")
+
+        # Use IMDb poster if Criterion poster is missing
+        if not poster and "Poster" in omdb_json:
+            poster = omdb_json["Poster"]
+
     else:
         imdb_id = None
         overview = "No overview available."
         imdb_rating = "N/A"
         runtime = "Unknown"
         genre = "Unknown"
+        missing_movies.append({"title": title, "year": year, "director": director})
 
     movies.append({
         "id": imdb_id,  # e.g. "tt1234567"
@@ -147,9 +152,13 @@ for row in rows:
     })
 
 ################################################################################
-# 6. Save final JSON
+# 6. Save final JSON & Print Stats
 ################################################################################
 with open("criterion_movies.json", "w", encoding="utf-8") as f:
     json.dump(movies, f, indent=4, ensure_ascii=False)
 
+with open("missing_movies.json", "w", encoding="utf-8") as f:
+    json.dump(missing_movies, f, indent=4, ensure_ascii=False)
+
 print(f"✅ Done! {len(movies)} films saved to criterion_movies.json.")
+print(f"❌ Missing films: {len(missing_movies)} (check missing_movies.json)")
