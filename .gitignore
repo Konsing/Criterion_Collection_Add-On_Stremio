@@ -8,3 +8,5 @@ venv/
 .env
 
 __pycache__/
+
+criterion_movies_structure.html

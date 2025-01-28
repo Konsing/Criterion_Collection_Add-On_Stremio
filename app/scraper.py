@@ -1,159 +1,155 @@
+import os
+import time
+import json
+import requests
 from dotenv import load_dotenv
+from bs4 import BeautifulSoup
+
+# Selenium imports
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium_stealth import stealth
-import time
-from bs4 import BeautifulSoup
-import requests
 
-from .config.config import OMDB_API_KEY
-from .config.database import engine, get_db
-from app import models
-from app.models import Movie
-
-# Create the database tables if they don't exist
-models.Base.metadata.create_all(bind=engine)
-
-# Load the .env file
+################################################################################
+# 1. Load environment (OMDb API key)
+################################################################################
 load_dotenv()
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+if not OMDB_API_KEY:
+    raise ValueError("OMDB_API_KEY missing in .env")
 
-def get_imdb_id(movie_title: str):
+################################################################################
+# 2. Setup Selenium (headless Chrome + stealth)
+################################################################################
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
+stealth(
+    driver,
+    languages=["en-US", "en"],
+    vendor="Google Inc.",
+    platform="Win32",
+    webgl_vendor="Intel Inc.",
+    renderer="Intel Iris OpenGL Engine",
+    fix_hairline=True,
+)
+
+################################################################################
+# 3. Load Criterion page & scroll fully to capture all films
+################################################################################
+URL = (
+    "https://www.criterion.com/shop/browse/list"
+    "?sort=year&decade=2020s,2010s,2000s,1990s,1980s"
+    "&direction=desc"
+)
+driver.get(URL)
+time.sleep(3)
+
+# Keep scrolling until the page no longer grows
+prev_height = 0
+while True:
+    driver.find_element("tag name", "body").send_keys(Keys.END)
+    time.sleep(2)
+    new_height = driver.execute_script("return document.body.scrollHeight")
+    if new_height == prev_height:
+        break
+    prev_height = new_height
+
+soup = BeautifulSoup(driver.page_source, "html.parser")
+driver.quit()
+
+################################################################################
+# 4. Helper: Grab OMDb data by Title + Year (fallback: Title alone)
+################################################################################
+def fetch_omdb_data(title, year):
     """
-    Fetch the IMDb ID from OMDb for a given movie title.
-    Returns None if not found.
+    Tries (title + year) first. If no match, tries just (title).
+    Returns OMDb JSON or None if not found.
     """
-    omdb_url = f"http://www.omdbapi.com/?apikey={OMDB_API_KEY}&t={movie_title.replace(' ', '+')}"
-    response = requests.get(omdb_url)
-    data = response.json()
-    
-    if data.get("Response") == "True" and "imdbID" in data:
-        return data["imdbID"]
+    base_url = "http://www.omdbapi.com/"
+
+    # 1) Attempt: Title + Year
+    params1 = {"apikey": OMDB_API_KEY, "t": title, "y": year}
+    r1 = requests.get(base_url, params=params1)
+    d1 = r1.json()
+    if d1.get("Response") == "True":
+        return d1  # got it
+
+    # 2) Attempt: Title alone
+    params2 = {"apikey": OMDB_API_KEY, "t": title}
+    r2 = requests.get(base_url, params=params2)
+    d2 = r2.json()
+    if d2.get("Response") == "True":
+        return d2
+
+    # Not found
     return None
 
-def configure_driver() -> webdriver.Chrome:
-    """
-    Configure and return a headless Chrome WebDriver instance with stealth settings.
-    """
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+################################################################################
+# 5. Scrape each film, query OMDb for IMDb ID & extra fields
+################################################################################
+movies = []
+rows = soup.find_all("tr", class_="gridFilm")
 
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+for row in rows:
+    title_td = row.find("td", class_="g-title")
+    img_td = row.find("td", class_="g-img")
+    director_td = row.find("td", class_="g-director")
+    year_td = row.find("td", class_="g-year")
 
-    stealth(
-        driver,
-        languages=["en-US", "en"],
-        vendor="Google Inc.",
-        platform="Win32",
-        webgl_vendor="Intel Inc.",
-        renderer="Intel Iris OpenGL Engine",
-        fix_hairline=True,
-    )
-    return driver
+    if not (title_td and img_td and director_td and year_td):
+        continue
 
-def fetch_page_soup(driver: webdriver.Chrome, url: str) -> BeautifulSoup:
-    """
-    Given a WebDriver and URL, navigate there, wait, and return the page's BeautifulSoup.
-    """
-    driver.get(url)
-    # Wait for the page to load (adjust if needed)
-    time.sleep(5)
-    return BeautifulSoup(driver.page_source, "html.parser")
+    # Extract textual data
+    title = title_td.get_text(strip=True)
+    director = director_td.get_text(strip=True)
+    year = year_td.get_text(strip=True)
 
-def parse_movie_info(item) -> dict:
-    """
-    Given a BeautifulSoup element representing a movie row,
-    extract the relevant data (title, poster, year, director, country).
+    # Poster
+    img = img_td.find("img")
+    poster = img["src"] if img else None
 
-    Returns a dict if valid data is found, otherwise None.
-    """
-    title_tag = item.find("td", class_="g-title")
-    img_tag = item.find("td", class_="g-img").find("img")
-    year_tag = item.find("td", class_="g-year")
-    director_tag = item.find("td", class_="g-director")
-    country_tag = item.find("td", class_="g-country")
+    # Use OMDb to get "tt..." plus overview, rating, etc.
+    omdb_json = fetch_omdb_data(title, year)
 
-    if not (title_tag and img_tag and year_tag):
-        return None  # Missing critical info, skip
+    if omdb_json:
+        imdb_id = omdb_json.get("imdbID")
+        overview = omdb_json.get("Plot", "No overview available.")
+        imdb_rating = omdb_json.get("imdbRating", "N/A")
+        runtime = omdb_json.get("Runtime", "Unknown")
+        genre = omdb_json.get("Genre", "Unknown")
+    else:
+        imdb_id = None
+        overview = "No overview available."
+        imdb_rating = "N/A"
+        runtime = "Unknown"
+        genre = "Unknown"
 
-    title = title_tag.text.strip()
-    poster = img_tag["src"]
-    year = year_tag.text.strip()
-    director = director_tag.text.strip()
-    country = country_tag.text.strip()
-
-    return {
+    movies.append({
+        "id": imdb_id,  # e.g. "tt1234567"
         "title": title,
         "poster": poster,
         "year": year,
         "director": director,
-        "country": country
-    }
+        "overview": overview,
+        "imdb_rating": imdb_rating,
+        "runtime": runtime,
+        "genre": genre
+    })
 
-def store_movie_in_db(db_session, movie_data: dict):
-    """
-    Given a SQLAlchemy session and a dict of movie data,
-    fetch (or generate) an IMDb ID, then insert/update the database record.
-    """
-    title = movie_data["title"]
-    poster = movie_data["poster"]
-    year = movie_data["year"]
-    director = movie_data["director"]
-    country = movie_data["country"]
+################################################################################
+# 6. Save final JSON
+################################################################################
+with open("criterion_movies.json", "w", encoding="utf-8") as f:
+    json.dump(movies, f, indent=4, ensure_ascii=False)
 
-    # Fetch IMDb ID from OMDb
-    imdb_id = get_imdb_id(title)
-
-    existing_movie = None
-
-    # Skip if any required field is missing or invalid
-    if not all([imdb_id, title, poster, year, director, country]):
-        print(f"Skipping movie due to missing data: {movie_data}")
-        return  # Skip this movie
-
-    # Check if the movie already exists in the database
-    existing_movie = db_session.query(Movie).filter_by(imdb_id=imdb_id).first()
-
-    if not existing_movie:
-        new_movie = Movie(
-            imdb_id=imdb_id,
-            title=title,
-            poster=poster,
-            year=year,
-            director=director,
-            country=country
-        )
-        db_session.add(new_movie)
-        db_session.commit()
-
-def scrape_criterion():
-    """
-    Scrape Criterion website, retrieve movie data,
-    and store/update it in the database.
-    """
-    driver = configure_driver()
-    url = "https://www.criterion.com/shop/browse/list?sort=year&decade=2020s,2010s,2000s,1990s,1980s&direction=desc"
-
-    # Fetch and parse the page
-    soup = fetch_page_soup(driver, url)
-    # Close the browser
-    driver.quit()
-
-    # Create a new database session
-    db_session = next(get_db())
-
-    # Iterate through all movie rows
-    for item in soup.find_all("tr", class_="gridFilm"):
-        movie_data = parse_movie_info(item)
-        if movie_data:
-            store_movie_in_db(db_session, movie_data)
-
-    print("Scraping complete! Data is now in the database.")
-
-if __name__ == "__main__":
-    scrape_criterion()
+print(f"✅ Done! {len(movies)} films saved to criterion_movies.json.")
