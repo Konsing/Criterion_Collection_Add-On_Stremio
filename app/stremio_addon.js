@@ -28,7 +28,7 @@ const manifest = {
     ]
 };
 
-// 🎬 **Ensure IMDb Rating, Genre, and Cast Appear in Catalog**  
+// 🎬 Catalog Meta Configuration
 const catalog = movies.map(movie => ({
     "id": movie.id,
     "name": movie.title,
@@ -37,29 +37,18 @@ const catalog = movies.map(movie => ({
     "description": movie.overview || "A film from the Criterion Collection.",
     "releaseInfo": movie.year || "Unknown",
     "runtime": movie.runtime !== "Unknown" ? movie.runtime : "N/A",
-    "background": movie.poster,  // Helps with better visuals
-    
-    // ✅ **Fix: Use IMDb-Styled Font Instead of Criterion Logo**
-    "logo": `https://images.metahub.space/logo/medium/${movie.id}/img`,
-
-    // ✅ IMDb Rating with Logo (Only if Available)
-    "rating": movie.imdb_rating !== "N/A" ? {
-        "value": parseFloat(movie.imdb_rating),
-        "type": "imdb"
-    } : undefined,
-
-    // ✅ Genre Tags as Clickable Ovals
-    "genre": movie.genre !== "Unknown" ? movie.genre.split(", ") : [],
-
-    // ✅ Cast & Director (Ensuring They're Lists)
-    "cast": movie.cast && movie.cast.length > 0 ? movie.cast.split(", ") : [],
-    "director": movie.director ? [movie.director] : []
+    "background": movie.poster,
+    "logo": movie.id ? `https://images.metahub.space/logo/medium/${movie.id}/img` : undefined,
+    "genres": movie.genre !== "Unknown" ? movie.genre.split(", ") : [],
+    "imdbRating": movie.imdb_rating !== "N/A" ? parseFloat(movie.imdb_rating).toFixed(1) : undefined, // IMDb rating as string
+    "director": movie.director ? [movie.director] : [], // Director as array
+    "cast": movie.cast || [], // Cast as array
 }));
 
 // Build the Stremio Add-on
 const builder = new addonBuilder(manifest);
 
-// 📌 **Fixing Catalog Handler to Ensure IMDb Rating Appears**
+// 📌 Catalog Handler
 builder.defineCatalogHandler(({ type, id }) => {
     if (type === "movie" && id === "criterion") {
         return Promise.resolve({ metas: catalog });
@@ -67,10 +56,10 @@ builder.defineCatalogHandler(({ type, id }) => {
     return Promise.reject("Not supported type");
 });
 
-// 📌 **Fixing Detailed Meta View**
+// 📌 Meta View Handler (Corrected Schema)
 builder.defineMetaHandler(({ id }) => {
     const movie = movies.find(m => m.id === id);
-    
+
     if (movie) {
         return Promise.resolve({
             "meta": {
@@ -79,37 +68,15 @@ builder.defineMetaHandler(({ id }) => {
                 "poster": movie.poster,
                 "type": "movie",
                 "description": movie.overview || "A film from the Criterion Collection.",
-                "runtime": movie.runtime,
-                "releaseInfo": movie.year,
+                "runtime": movie.runtime || "N/A",
+                "releaseInfo": movie.year || "Unknown",
                 "background": movie.poster,
-
-                // ✅ **Fix: Use IMDb-Styled Font Instead of Criterion Logo**
-                "logo": `https://images.metahub.space/logo/medium/${movie.id}/img`,
-
-                // ✅ **IMDb Rating with Logo**
-                "rating": movie.imdb_rating !== "N/A" ? {
-                    "value": parseFloat(movie.imdb_rating),
-                    "type": "imdb"
-                } : undefined,
-
-                // ✅ **Genres as clickable tags**
-                "genre": movie.genre !== "Unknown" ? movie.genre.split(", ") : [],
-
-                // ✅ **Cast & Director Display**
-                "cast": movie.cast && movie.cast.length > 0 ? movie.cast.split(", ") : [],
-                "director": movie.director ? [movie.director] : [],
-
-                // ✅ **Clickable IMDb & Criterion Links**
-                "links": [
-                    {
-                        "name": "View on IMDb",
-                        "url": `https://www.imdb.com/title/${movie.id}/`
-                    },
-                    {
-                        "name": "View on Criterion",
-                        "url": movie.criterion_url || "https://www.criterion.com/"
-                    }
-                ]
+                "logo": movie.id ? `https://images.metahub.space/logo/medium/${movie.id}/img` : undefined,
+                "imdbRating": movie.imdb_rating !== "N/A" ? parseFloat(movie.imdb_rating).toFixed(1) : undefined, // IMDb rating as string
+                "genres": movie.genre !== "Unknown" ? movie.genre.split(", ") : [],
+                "cast": movie.cast || [], // Cast as array
+                "director": movie.director ? [movie.director] : [], // Director as array
+                "trailer": movie.trailer || undefined,
             }
         });
     }
