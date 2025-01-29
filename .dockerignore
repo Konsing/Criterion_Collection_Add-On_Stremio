@@ -7,3 +7,6 @@ venv
 .env
 
 __pycache__/
+
+npm-debug.log
+.DS_Store
