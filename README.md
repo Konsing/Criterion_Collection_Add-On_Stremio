@@ -12,22 +12,19 @@ Enhance your **Stremio experience** with a dedicated add-on for the **Criterion 
 ### **🔹 Discover Page View**  
 > Explore the Criterion Collection directly within Stremio.  
 
-<img src="images/Criterion_Collection.png/" alt="Criterion Collection Discover Page" width="800">
-</p>  
+<img src="images/Criterion_Collection.png" alt="Criterion Collection Discover Page" width="800">
 
 ---
 
 ### **🏠 Home Page View**  
 > See the collection featured on your Stremio home screen.  
 
-<img src="images/Criterion_Collection_Home.png/" alt="Criterion Collection Home Page" width="800">
-</p>  
+<img src="images/Criterion_Collection_Home.png" alt="Criterion Collection Home Page" width="800">
 
 ---
 
-
 ### **🔍 Meta view / Catalog View**
-> *NEW* Browse through the Criterion Collection with a sleek and intuitive catalog view.
+> (NEW) Browse through the Criterion Collection with a sleek and intuitive catalog view.
 
 <div style="display: flex; align-items: center; gap: 8px;">
   <img src="images/image1.png" alt="Criterion Collection Catalog View 1" width="180" height="600" style="object-fit: cover; object-position: top;">
