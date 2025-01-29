@@ -12,7 +12,7 @@ try {
 // Define the Stremio manifest
 const manifest = {
     "id": "stremio-criterion",
-    "version": "1.0.0",
+    "version": "1.5.0",
     "name": "Criterion Collection",
     "description": "Lists Criterion Collection movies with metadata, ratings, and posters.",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5d/The_Criterion_Collection_Logo.svg",
