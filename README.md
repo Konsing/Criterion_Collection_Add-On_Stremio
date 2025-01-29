@@ -27,11 +27,10 @@ Enhance your **Stremio experience** with a dedicated add-on for the **Criterion 
 > (NEW) Browse through the Criterion Collection with a sleek and intuitive catalog view.
 
 <div style="display: flex; align-items: center; gap: 8px;">
-  <img src="images/image1.png" alt="Criterion Collection Catalog View 1" width="180" height="600" style="object-fit: cover; object-position: top;">
-  <img src="images/image2.png" alt="Criterion Collection Catalog View 2" width="180" height="600" style="object-fit: cover; object-position: top;">
-  <img src="images/image3.png" alt="Criterion Collection Catalog View 3" width="180" height="600" style="object-fit: cover; object-position: top;">
-  <img src="images/image4.png" alt="Criterion Collection Catalog View 4" width="180" height="600" style="object-fit: cover; object-position: top;">
-  <img src="images/image5.png" alt="Criterion Collection Catalog View 5" width="180" height="600" style="object-fit: cover; object-position: top;">
+   <img src="images/image1.png" alt="Criterion Collection Catalog View 1" width="200" height="600" style="object-fit: cover; object-position: top;">
+   <img src="images/image2.png" alt="Criterion Collection Catalog View 2" width="200" height="600" style="object-fit: cover; object-position: top;">
+   <img src="images/image3.png" alt="Criterion Collection Catalog View 3" width="200" height="600" style="object-fit: cover; object-position: top;">
+   <img src="images/image4.png" alt="Criterion Collection Catalog View 4" width="200" height="600" style="object-fit: cover; object-position: top;">
 </div>
 
 ---
