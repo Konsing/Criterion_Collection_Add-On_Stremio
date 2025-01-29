@@ -41,8 +41,6 @@ const catalog = movies.map(movie => ({
     "logo": movie.id ? `https://images.metahub.space/logo/medium/${movie.id}/img` : undefined,
     "genres": movie.genre !== "Unknown" ? movie.genre.split(", ") : [],
     "imdbRating": movie.imdb_rating !== "N/A" ? parseFloat(movie.imdb_rating).toFixed(1) : undefined, // IMDb rating as string
-    "director": movie.director ? [movie.director] : [], // Director as array
-    "cast": movie.cast || [], // Cast as array
 }));
 
 // Build the Stremio Add-on
@@ -74,8 +72,6 @@ builder.defineMetaHandler(({ id }) => {
                 "logo": movie.id ? `https://images.metahub.space/logo/medium/${movie.id}/img` : undefined,
                 "imdbRating": movie.imdb_rating !== "N/A" ? parseFloat(movie.imdb_rating).toFixed(1) : undefined, // IMDb rating as string
                 "genres": movie.genre !== "Unknown" ? movie.genre.split(", ") : [],
-                "cast": movie.cast || [], // Cast as array
-                "director": movie.director ? [movie.director] : [], // Director as array
                 "trailer": movie.trailer || undefined,
             }
         });
