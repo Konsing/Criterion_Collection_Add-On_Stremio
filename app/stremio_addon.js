@@ -11,7 +11,7 @@ try {
 }
 
 // 2) Manifest with Our Sort Options
-//    - We'll provide the user a dropdown with year_asc, year_desc, rating_asc, etc.
+//    - We'll provide the user a dropdown with Year Ascending, Year Descending, Rating Ascending, etc.
 const manifest = {
     id: "stremio-criterion",
     version: "2.0.0",
@@ -90,8 +90,8 @@ function getSortedCatalog(sortOption) {
             break;
 
         default:
-            // If for some reason no valid option is passed, we'll do year_desc (common default).
-            console.log("No valid sort option detected, defaulting to newest first (year_desc).");
+            // If for some reason no valid option is passed, we'll do Year Descending (common default).
+            console.log("No valid sort option detected, defaulting to newest first (Year Descending).");
             sortedMovies.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
             break;
     }
@@ -126,8 +126,8 @@ builder.defineCatalogHandler(({ type, id, extra }) => {
     console.log("Catalog Handler Called ->", { type, id, extra });
 
     if (type === "movie" && id === "criterion") {
-        // If no 'sort' param, use 'year_desc' as the default
-        const sortOption = extra && extra.sort ? extra.sort : "year_desc";
+        // If no 'sort' param, use 'Year Descending' as the default
+        const sortOption = extra && extra.sort ? extra.sort : "Year Descending";
         console.log("Sorting by:", sortOption);
 
         const sortedCatalog = getSortedCatalog(sortOption);

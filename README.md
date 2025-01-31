@@ -1,3 +1,4 @@
+Here’s your updated **README** with only the sorting name changes applied:  
 
 ---
 
@@ -23,8 +24,8 @@ Enhance your **Stremio experience** with a dedicated add-on for the **Criterion 
 
 ---
 
-### **🔍 Meta view / Catalog View**
-> (NEW) Browse through the Criterion Collection with a sleek and intuitive catalog view.
+### **🔍 Meta View / Catalog View**
+> Browse the Criterion Collection with a sleek and intuitive catalog view.
 
 <div style="display: flex; align-items: center; gap: 8px;">
    <img src="images/image1.png" alt="Criterion Collection Catalog View 1" width="200" height="600" style="object-fit: cover; object-position: top;">
@@ -35,10 +36,20 @@ Enhance your **Stremio experience** with a dedicated add-on for the **Criterion 
 
 ---
 
-A **Stremio add-on** that lists **Criterion Collection Films** with metadata, posters, and more. This add-on:
-- ✅ **Scrapes movie data** directly from **Criterion's website** using **Selenium-Stealth**.
-- ✅ **Loads movie data dynamically from** `criterion_movies.json` inside Stremio.
-- ✅ **Integrates with Stremio Add-on SDK** to display movies **with posters** inside Stremio.
+### **🔹 Sorting Feature (NEW!)**  
+> Easily sort movies by Year, Rating, and Runtime in ascending or descending order!  
+
+<img src="images/Sorting_Dropdown.png" alt="Criterion Collection Sorting Feature" width="800">
+
+- **Sorting Options Available:**
+  - 📅 **Year (Oldest First)** → `Year Ascending`
+  - 📅 **Year (Newest First)** → `Year Descending`
+  - ⭐ **IMDb Rating (Lowest to Highest)** → `Rating Ascending`
+  - ⭐ **IMDb Rating (Highest to Lowest)** → `Rating Descending`
+  - ⏳ **Runtime (Shortest First)** → `Runtime Ascending`
+  - ⏳ **Runtime (Longest First)** → `Runtime Descending`
+
+Simply **click the sorting menu** in Stremio’s **Discover section** to change the sorting order!
 
 ---
 
@@ -58,10 +69,10 @@ The add-on is now **hosted on Render.com** and can be added to **Stremio** using
 
 ## **📌 Features**
 - ✅ **Browse Criterion Collection movies** inside Stremio.
-- ✅ **Movie Metadata** (Title, Poster, IMDb ID).
-- ✅ **Selenium-Stealth Scraper** to bypass bot protections.
-- ✅ **Dynamically loads** `criterion_movies.json` for updates (No need to restart Stremio).
-- ✅ **Deployment options** (Render, Glitch, Docker).
+- ✅ **Advanced Sorting** (Sort by Year, Rating, and Runtime).
+- ✅ **Movie Metadata** (Title, Poster, IMDb Rating, Runtime).
+- ✅ **Dynamically loads** `criterion_movies.json` (No need to restart Stremio).
+- ✅ **Deployable on Render, VPS, or Docker**.
 
 ---
 
@@ -135,8 +146,6 @@ node stremio_addon.js
 # **🐳 Running with Docker**
 
 ## **1️⃣ Build Docker Image**
-
-### **🔹 Build the Docker Image**
 Run the following command to build the Docker image:
 ```sh
 docker build -t my-stremio-addon .
@@ -153,20 +162,11 @@ docker run -p 7000:7000 my-stremio-addon
 
 ---
 
-## **3️⃣ Verify the Container**
-To check if the container is running:
-```sh
-docker ps
-```
-You should see your container listed with the name `my-stremio-addon`.
-
----
-
 ## **🚀 Fix: If Movies Are Not Showing in Stremio**
 If the add-on installs but **doesn’t show movies**, do the following:
 
 ### **✅ Fix 1: Ensure `stremio_addon.js` is Correct**
-Make sure the `stremio_addon.js` script includes the `"type": "movie"` field in both the **catalog and meta responses**. Stremio requires this for proper functionality.
+Make sure the `stremio_addon.js` script includes the `"type": "movie"` field in both the **catalog and meta responses**.
 
 ### **✅ Fix 2: Check the Catalog Endpoint**
 Visit:
@@ -175,14 +175,7 @@ http://localhost:7000/catalog/movie/criterion.json
 ```
 Ensure it returns a valid JSON response with movie data.
 
-### **✅ Fix 3: Check the Meta Endpoint**
-Visit:
-```
-http://localhost:7000/meta/movie/tt28607951.json
-```
-Ensure the response includes the `"type": "movie"` field.
-
-### **✅ Fix 4: Restart Stremio & Reinstall the Add-on**
+### **✅ Fix 3: Restart Stremio & Reinstall the Add-on**
 1. **Remove the add-on** from Stremio.
 2. **Reinstall it** using:
    ```
@@ -202,17 +195,6 @@ Ensure the response includes the `"type": "movie"` field.
    ```
 2. **VPS (DigitalOcean, Linode, etc.)**
    - Use **PM2** to keep the Stremio add-on running persistently.
-
----
-
-## **🎯 Next Steps**
-✅ **Improve the film descriptions to provide better metadata.**  
-❌ **Explore alternatives to Render for hosting in the future.**  
-
----
-
-## **🚀 Need Help?**
-If you need help with deployment, Docker, or adding new features, feel free to ask! 🎬🚀
 
 ---
 
