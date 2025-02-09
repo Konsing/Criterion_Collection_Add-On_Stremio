@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "needle": "^3.3.1"
+  }
+}
