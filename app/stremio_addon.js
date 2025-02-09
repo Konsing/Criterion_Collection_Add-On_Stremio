@@ -11,7 +11,7 @@ try {
   console.error("Error reading criterion_movies.json:", err);
 }
 
-// 2) Manifest
+// 2) Manifest with updated sort options
 const manifest = {
   id: "stremio-criterion",
   version: "2.0.0",
@@ -33,7 +33,9 @@ const manifest = {
             "Year Ascending",
             "Year Descending",
             "Runtime Ascending",
-            "Runtime Descending"
+            "Runtime Descending",
+            "Rating Ascending",
+            "Rating Descending"
           ],
           isRequired: false
         }
@@ -42,7 +44,7 @@ const manifest = {
   ]
 };
 
-// 3) Sorting function with only necessary sort options
+// 3) Sorting function with added rating sort options
 function getSortedCatalog(sortOption) {
   const sortedMovies = [...movies];
   switch (sortOption) {
@@ -53,10 +55,25 @@ function getSortedCatalog(sortOption) {
       sortedMovies.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
       break;
     case "Runtime Ascending":
-      sortedMovies.sort((a, b) => (parseInt(a.runtime) || 0) - (parseInt(b.runtime) || 0));
+      sortedMovies.sort((a, b) => {
+        // Extract numeric runtime value
+        const runtimeA = parseInt(a.runtime) || 0;
+        const runtimeB = parseInt(b.runtime) || 0;
+        return runtimeA - runtimeB;
+      });
       break;
     case "Runtime Descending":
-      sortedMovies.sort((a, b) => (parseInt(b.runtime) || 0) - (parseInt(a.runtime) || 0));
+      sortedMovies.sort((a, b) => {
+        const runtimeA = parseInt(a.runtime) || 0;
+        const runtimeB = parseInt(b.runtime) || 0;
+        return runtimeB - runtimeA;
+      });
+      break;
+    case "Rating Ascending":
+      sortedMovies.sort((a, b) => (parseFloat(a.imdb_rating) || 0) - (parseFloat(b.imdb_rating) || 0));
+      break;
+    case "Rating Descending":
+      sortedMovies.sort((a, b) => (parseFloat(b.imdb_rating) || 0) - (parseFloat(a.imdb_rating) || 0));
       break;
     default:
       // Default to Year Descending if no valid option is provided
@@ -101,7 +118,6 @@ function getSortedCatalog(sortOption) {
       releaseInfo: movie.year || "Unknown",
       runtime: movie.runtime !== "Unknown" ? movie.runtime : "N/A",
       background: movie.poster,
-      // Keep logo if needed, but it's no longer linked to IMDb ratings
       logo: movie.id ? `https://images.metahub.space/logo/medium/${movie.id}/img` : undefined,
       links: links,
       genres: movie.genre && movie.genre !== "Unknown" ? movie.genre.split(", ") : []
