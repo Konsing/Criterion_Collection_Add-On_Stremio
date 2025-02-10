@@ -1,73 +1,278 @@
 [
     {
-        "title": "Alex Wheatle",
-        "year": "2020",
-        "director": "Steve McQueen"
+        "title": "À nous la liberté",
+        "year": "1931",
+        "director": "René Clair"
     },
     {
-        "title": "Rolling Thunder Revue: A Bob Dylan Story by Martin Scorsese",
-        "year": "2019",
-        "director": "Martin Scorsese"
+        "title": "La tête d’un homme",
+        "year": "1933",
+        "director": "Julien Duvivier"
     },
     {
-        "title": "Blue Is the Warmest Color",
-        "year": "2013",
-        "director": "Abdellatif Kechiche"
+        "title": "W. C. Fields—Six Short Films",
+        "year": "1933",
+        "director": "Monte Brice, Clyde Bruckman, Edwin Middleton, Leslie Pearce, and Arthur Ripley"
     },
     {
-        "title": "Agnès de ci de là Varda",
-        "year": "2011",
-        "director": "Agnès Varda"
+        "title": "Dos monjes",
+        "year": "1934",
+        "director": "Juan Bustillo Oro"
     },
     {
-        "title": "L’humanité",
-        "year": "1999",
-        "director": "Bruno Dumont"
+        "title": "L’Atalante",
+        "year": "1934",
+        "director": "Jean Vigo"
     },
     {
-        "title": "A Tale of Autumn",
-        "year": "1998",
-        "director": "Eric Rohmer"
+        "title": "La bête humaine",
+        "year": "1938",
+        "director": "Jean Renoir"
     },
     {
-        "title": "Black Is . . . Black Ain’t",
-        "year": "1995",
-        "director": "Marlon Riggs"
+        "title": "The Masseurs and a Woman",
+        "year": "1938",
+        "director": "Hiroshi Shimizu"
     },
     {
-        "title": "Akira Kurosawa’s Dreams",
-        "year": "1990",
-        "director": "Akira Kurosawa"
+        "title": "The Proud Valley",
+        "year": "1940",
+        "director": "Pen Tennyson"
     },
     {
-        "title": "Jane B. par Agnès V.",
-        "year": "1988",
-        "director": "Agnès Varda"
+        "title": "All That Money Can Buy",
+        "year": "1941",
+        "director": "William Dieterle"
     },
     {
-        "title": "Jimi Plays Monterey & Shake! Otis at Monterey",
-        "year": "1986",
-        "director": "Chris Hegedus…"
+        "title": "Lettres d’amour",
+        "year": "1942",
+        "director": "Claude Autant-Lara"
     },
     {
-        "title": "Fearless Hyena II",
-        "year": "1983",
-        "director": "Chan Chuen"
+        "title": "Les visiteurs du soir",
+        "year": "1942",
+        "director": "Marcel Carné"
     },
     {
-        "title": "And the Ship Sails On",
-        "year": "1983",
-        "director": "Federico Fellini"
+        "title": "Lumière d’été",
+        "year": "1943",
+        "director": "Jean Grémillon"
     },
     {
-        "title": "Fanny and Alexander: Television Version",
-        "year": "1983",
+        "title": "Le ciel est à vous",
+        "year": "1944",
+        "director": "Jean Grémillon"
+    },
+    {
+        "title": "I Know Where I’m Going!",
+        "year": "1945",
+        "director": "Michael Powell and Emeric Pressburger"
+    },
+    {
+        "title": "Les dames du Bois de Boulogne",
+        "year": "1945",
+        "director": "Robert Bresson"
+    },
+    {
+        "title": "The Small Back Room",
+        "year": "1949",
+        "director": "Michael Powell and Emeric Pressburger"
+    },
+    {
+        "title": "Le silence de la mer",
+        "year": "1949",
+        "director": "Jean-Pierre Melville"
+    },
+    {
+        "title": "Casque d’or",
+        "year": "1952",
+        "director": "Jacques Becker"
+    },
+    {
+        "title": "Waiting Women",
+        "year": "1952",
         "director": "Ingmar Bergman"
     },
     {
-        "title": "L’argent",
-        "year": "1983",
-        "director": "Robert Bresson"
+        "title": "Touchez pas au grisbi",
+        "year": "1954",
+        "director": "Jacques Becker"
+    },
+    {
+        "title": "The Complete Mr. Arkadin",
+        "year": "1955",
+        "director": "Orson Welles"
+    },
+    {
+        "title": "Il bidone",
+        "year": "1955",
+        "director": "Federico Fellini"
+    },
+    {
+        "title": "The Girl Can’t Help It",
+        "year": "1956",
+        "director": "Frank Tashlin"
+    },
+    {
+        "title": "Martha Graham: Dance on Film",
+        "year": "1959",
+        "director": "Nathan Kroll"
+    },
+    {
+        "title": "Apur Sansar",
+        "year": "1959",
+        "director": "Satyajit Ray"
+    },
+    {
+        "title": "L’avventura",
+        "year": "1960",
+        "director": "Michelangelo Antonioni"
+    },
+    {
+        "title": "Classe tous risques",
+        "year": "1960",
+        "director": "Claude Sautet"
+    },
+    {
+        "title": "Zazie dans le métro",
+        "year": "1960",
+        "director": "Louis Malle"
+    },
+    {
+        "title": "La commare secca",
+        "year": "1962",
+        "director": "Bernardo Bertolucci"
+    },
+    {
+        "title": "Three Documentaries",
+        "year": "1962",
+        "director": "Saul J. Turell"
+    },
+    {
+        "title": "I fidanzati",
+        "year": "1962",
+        "director": "Ermanno Olmi"
+    },
+    {
+        "title": "L’eclisse",
+        "year": "1962",
+        "director": "Michelangelo Antonioni"
+    },
+    {
+        "title": "Muriel, or The Time of Return",
+        "year": "1963",
+        "director": "Alain Resnais"
+    },
+    {
+        "title": "As Long as You’ve Got Your Health",
+        "year": "1966",
+        "director": "Pierre Etaix"
+    },
+    {
+        "title": "Japanese Summer: Double Suicide",
+        "year": "1967",
+        "director": "Nagisa Oshima"
+    },
+    {
+        "title": "La collectionneuse",
+        "year": "1967",
+        "director": "Eric Rohmer"
+    },
+    {
+        "title": "L’enfance nue",
+        "year": "1968",
+        "director": "Maurice Pialat"
+    },
+    {
+        "title": "Les Blank: Always for Pleasure",
+        "year": "1968",
+        "director": "Les Blank"
+    },
+    {
+        "title": "Porcile",
+        "year": "1969",
+        "director": "Pier Paolo Pasolini"
+    },
+    {
+        "title": "Fellini Satyricon",
+        "year": "1969",
+        "director": "Federico Fellini"
+    },
+    {
+        "title": "Dodes’ka-den",
+        "year": "1970",
+        "director": "Akira Kurosawa"
+    },
+    {
+        "title": "L’enfant aimé ou Je joue à être une femme mariée",
+        "year": "1971",
+        "director": "Chantal Akerman"
+    },
+    {
+        "title": "Zatoichi Meets the One-Armed Swordsman",
+        "year": "1971",
+        "director": "Kimiyoshi Yasuda"
+    },
+    {
+        "title": "Don’t Play Us Cheap",
+        "year": "1972",
+        "director": "Melvin Van Peebles"
+    },
+    {
+        "title": "Eight Hours Don’t Make a Day",
+        "year": "1972",
+        "director": "Rainer Werner Fassbinder"
+    },
+    {
+        "title": "Don’t Look Now",
+        "year": "1973",
+        "director": "Nicolas Roeg"
+    },
+    {
+        "title": "Pat Garrett and Billy the Kid",
+        "year": "1973",
+        "director": "Sam Peckinpah"
+    },
+    {
+        "title": "Lady Snowblood: Love Song of Vengeance",
+        "year": "1974",
+        "director": "Toshiya Fujita"
+    },
+    {
+        "title": "Je tu il elle",
+        "year": "1975",
+        "director": "Chantal Akerman"
+    },
+    {
+        "title": "Muna moto",
+        "year": "1975",
+        "director": "Dikongué-Pipa"
+    },
+    {
+        "title": "Ceddo",
+        "year": "1977",
+        "director": "Ousmane Sembène"
+    },
+    {
+        "title": "One Sings, the Other Doesn’t",
+        "year": "1977",
+        "director": "Agnès Varda"
+    },
+    {
+        "title": "The Model Couple",
+        "year": "1977",
+        "director": "William Klein"
+    },
+    {
+        "title": "Les rendez-vous d’Anna",
+        "year": "1978",
+        "director": "Chantal Akerman"
+    },
+    {
+        "title": "Fanny and Alexander: Theatrical Version",
+        "year": "1982",
+        "director": "Ingmar Bergman"
     },
     {
         "title": "Une chambre en ville",
@@ -75,8 +280,763 @@
         "director": "Jacques Demy"
     },
     {
-        "title": "Fanny and Alexander: Theatrical Version",
-        "year": "1982",
+        "title": "Fanny and Alexander: Television Version",
+        "year": "1983",
         "director": "Ingmar Bergman"
+    },
+    {
+        "title": "Fearless Hyena II",
+        "year": "1983",
+        "director": "Chan Chuen"
+    },
+    {
+        "title": "L’argent",
+        "year": "1983",
+        "director": "Robert Bresson"
+    },
+    {
+        "title": "And the Ship Sails On",
+        "year": "1983",
+        "director": "Federico Fellini"
+    },
+    {
+        "title": "Jimi Plays Monterey & Shake! Otis at Monterey",
+        "year": "1986",
+        "director": "Chris Hegedus…"
+    },
+    {
+        "title": "Jane B. par Agnès V.",
+        "year": "1988",
+        "director": "Agnès Varda"
+    },
+    {
+        "title": "Akira Kurosawa’s Dreams",
+        "year": "1990",
+        "director": "Akira Kurosawa"
+    },
+    {
+        "title": "Black Is . . . Black Ain’t",
+        "year": "1995",
+        "director": "Marlon Riggs"
+    },
+    {
+        "title": "A Tale of Autumn",
+        "year": "1998",
+        "director": "Eric Rohmer"
+    },
+    {
+        "title": "L’humanité",
+        "year": "1999",
+        "director": "Bruno Dumont"
+    },
+    {
+        "title": "Agnès de ci de là Varda",
+        "year": "2011",
+        "director": "Agnès Varda"
+    },
+    {
+        "title": "Blue Is the Warmest Color",
+        "year": "2013",
+        "director": "Abdellatif Kechiche"
+    },
+    {
+        "title": "Rolling Thunder Revue: A Bob Dylan Story by Martin Scorsese",
+        "year": "2019",
+        "director": "Martin Scorsese"
+    },
+    {
+        "title": "Alex Wheatle",
+        "year": "2020",
+        "director": "Steve McQueen"
+    },
+    {
+        "title": "Essential Art House: 50 Years of Janus Films",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 39: Early Fassbinder",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "La Jetée/Sans Soleil",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Complete Films of Agnès Varda",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "I Walked with a Zombie / The Seventh Victim: Produced by Val Lewton",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 20: George Bernard Shaw on Film",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "World of Wong Kar Wai",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Jackie Chan: Emergence of a Superstar",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Complete Jacques Tati",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Bo Widerberg’s New Swedish Cinema",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Three Revolutionary Films by Ousmane Sembène",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Paul Robeson: Portraits of the Artist",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Heroic Trio / Executioners",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 43: Agnès Varda in California",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 19: Chantal Akerman in the Seventies",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "3 Silent Classics by Josef von Sternberg",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "3 Films by Roberto Rossellini Starring Ingrid Bergman",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Red Balloon and Other Stories: Five Films by Albert Lamorisse",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 35:Maidstoneand Other Films by Norman Mailer",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 23: The First Films of Akira Kurosawa",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "3 Films by Louis Malle",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Streetwise/Tiny: The Life of Erin Blackwell",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 3: Late Ozu",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Roberto Rossellini’s War Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Trilogy of Life",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Koker Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 25: Basil Dearden’s London Underground",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Kennedy Films of Robert Drew & Associates",
+        "year": "",
+        "director": "Robert Drew"
+    },
+    {
+        "title": "Eclipse Series 30: Sabu!",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Dietrich & von Sternberg in Hollywood",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The BRD Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Before Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Three Films by Hiroshi Teshigahara",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Michael Haneke: Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "A Whit Stillman Trilogy:Metropolitan, Barcelona, The Last Days of Disco",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Grey Gardens / The Beales of Grey Gardens",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Infernal Affairs Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Lars von Trier’s Europe Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 27: Raffaello Matarazzo’s Runaway Melodramas",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "By Brakhage: An Anthology, Volume Two",
+        "year": "",
+        "director": "Stan Brakhage"
+    },
+    {
+        "title": "Eclipse Series 38: Masaki Kobayashi Against the System",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Gregg Araki’s Teen Apocalypse Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Complete Jean Vigo",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Trilogía de Guillermo del Toro",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Andrzej Wajda: Three War Films",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 33: Up All Night with Robert Downey Sr.",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Qatsi Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "4 by Agnès Varda",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Three Fantastic Journeys by Karel Zeman",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 8: Lubitsch Musicals",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 7: Postwar Kurosawa",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "André Gregory & Wallace Shawn: 3 Films",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Three Films by Luis Buñuel",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 6: Carlos Saura’s Flamenco Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Bruce Lee: His Greatest Hits",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 26: Silent Naruse",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Adventures of Antoine Doinel",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Ranown Westerns: Five Films Directed by Budd Boetticher",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Samurai Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Complete Lady Snowblood",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Godzilla: The Showa-Era Films, 1954–1975",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "David Lean Directs Noël Coward",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 41: Kinoshita and World War II",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 4: Raymond Bernard",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 14: Rossellini’s History Films—Renaissance and Enlightenment",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eric Rohmer’s Tales of the Four Seasons",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Marseille Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "A Story of Floating Weeds / Floating Weeds: Two Films by Yasujiro Ozu",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Gates of Heaven/Vernon, Florida",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Martin Scorsese’s World Cinema Project No. 2",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Pigs, Pimps & Prostitutes: 3 Films by Shohei Imamura",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 45: Claude Autant-Lara—Four Romantic Escapes from Occupied France",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Freaks / The Unknown / The Mystic: Tod Browning’s Sideshow Shockers",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "By Brakhage: An Anthology, Volumes One and Two",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 46: Ingrid Bergman’s Swedish Years",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Orphic Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 15: Travels with Hiroshi Shimizu",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Yojimbo / Sanjuro: Two Samurai Films by Akira Kurosawa",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Jean de Florette / Manon of the Spring: Two Films by Claude Berri",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Melvin Van Peebles: Essential Films",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 28: The Warped World of Koreyoshi Kurahara",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 10: Silent Ozu—Three Family Comedies",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Three Films by Mai Zetterling",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "AK 100: 25 Films by Akira Kurosawa",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "A Film Trilogy by Ingmar Bergman",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Symbiopsychotaxiplasm: Two Takes by William Greaves",
+        "year": "",
+        "director": "William Greaves"
+    },
+    {
+        "title": "Eclipse Series 34: Jean Grémillon During the Occupation",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Martin Scorsese’s World Cinema Project No. 3",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Once Upon a Time in China: The Complete Films",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Wim Wenders: The Road Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Letters from Fontainhas: Three Films by Pedro Costa",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 36: Three Wicked Melodramas from Gainsborough Pictures",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 42: Silent Ozu—Three Crime Dramas",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "CC40",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 21: Oshima’s Outlaw Sixties",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 2: The Documentaries of Louis Malle",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Ingmar Bergman’s Cinema",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Martin Scorsese’s World Cinema Project No. 4",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Six Moral Tales",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Two Films by Marguerite Duras",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "100 Years of Olympic Films: 1912–2012",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Chantal Akerman Masterpieces, 1968–1978",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 13: Kenji Mizoguchi’s Fallen Women",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Emigrants/The New Land",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 11: Larisa Shepitko",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Martin Scorsese’s World Cinema Project No. 1",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 22: Presenting Sacha Guitry",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eisenstein: The Sound Years",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Shooting/Ride in the Whirlwind",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Police Story/Police Story 2",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 16: Alexander Korda’s Private Lives",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 24: The Actuality Dramas of Allan King",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 44: Julien Duvivier in the Thirties",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "By Brakhage: An Anthology, Volume One",
+        "year": "",
+        "director": "Stan Brakhage"
+    },
+    {
+        "title": "Eclipse Series 5: The First Films of Samuel Fuller",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Olivier’s Shakespeare",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Essential Fellini",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Science Is Fiction: 23 Films by Jean Painlevé",
+        "year": "",
+        "director": "Jean Painlevé"
+    },
+    {
+        "title": "The Complete Monterey Pop Festival",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "A Hollis Frampton Odyssey",
+        "year": "",
+        "director": "Hollis Frampton"
+    },
+    {
+        "title": "Eclipse Series 17: Nikkatsu Noir",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 18: Dušan Makavejev—Free Radical",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 32: Pearls of the Czech New Wave",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Pasolini 101",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 9: The Delirious Fictions of William Klein",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 29: Aki Kaurismäki’s Leningrad Cowboys",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 31: Three Popular Films by Jean-Pierre Gorin",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Stage and Spectacle: Three Films by Jean Renoir",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Essential Jacques Demy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "John Cassavetes: Five Films",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Only Son/There Was a Father: Two Films by Yasujiro Ozu",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Monsters and Madmen",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Brief Encounters / The Long Farewell: Two Films by Kira Muratova",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 37: When Horror Came to Shochiku",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 40: Late Ray",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 1: Early Bergman",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "Eclipse Series 12: Aki Kaurismäki’s Proletariat Trilogy",
+        "year": "",
+        "director": ""
+    },
+    {
+        "title": "The Signifyin’ Works of Marlon Riggs",
+        "year": "",
+        "director": ""
     }
 ]

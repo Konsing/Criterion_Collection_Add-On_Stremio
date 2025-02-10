@@ -41,7 +41,7 @@ stealth(
 )
 
 # Load Criterion page Old Link: https://www.criterion.com/shop/browse/list?sort=year
-URL = "https://www.criterion.com/shop/browse/list?sort=year&decade=2020s,2010s,2000s,1990s,1980s&direction=desc"
+URL = "https://www.criterion.com/shop/browse/list?sort=year"
 driver.get(URL)
 time.sleep(3)
 
