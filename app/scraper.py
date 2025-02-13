@@ -40,7 +40,7 @@ stealth(
     fix_hairline=True,
 )
 
-# Load Criterion page Old Link: https://www.criterion.com/shop/browse/list?sort=year
+# Load Criterion page
 URL = "https://www.criterion.com/shop/browse/list?sort=year"
 driver.get(URL)
 time.sleep(3)
