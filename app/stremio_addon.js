@@ -80,7 +80,7 @@ function getSortedCatalog(sortOption) {
       sortedMovies.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
       break;
   }
-  // Build catalog without IMDb-related links
+  // Build catalog with IMDb rating added as a link
   const catalog = sortedMovies.map(movie => {
     const links = [];
     // Add Cast links
@@ -107,6 +107,14 @@ function getSortedCatalog(sortOption) {
           category: "Genres",
           url: `stremio:///search?search=${encodeURIComponent(genre)}`
         });
+      });
+    }
+    // Add IMDb rating link using a custom category to avoid default labels
+    if (movie.imdb_rating) {
+      links.push({
+        name: `⭐ IMDB: ${movie.imdb_rating}`,
+        category: "imdb_rating", // Using a custom category to prevent fallback to "LINKS_IMDB"
+        url: `stremio:///search?search=${encodeURIComponent(movie.imdb_rating)}`
       });
     }
     return {
@@ -142,10 +150,19 @@ builder.defineCatalogHandler(({ type, id, extra }) => {
   return Promise.reject("Not supported type or id");
 });
 
-// 6) Meta Handler for individual movie details (IMDb fields removed)
+// 6) Meta Handler for individual movie details (with IMDb rating as a link)
 builder.defineMetaHandler(({ id }) => {
   const movie = movies.find(m => m.id === id);
   if (movie) {
+    // Build a links array for the meta view that includes the IMDb rating link
+    const metaLinks = [];
+    if (movie.imdb_rating) {
+      metaLinks.push({
+        name: `⭐ IMDB: ${movie.imdb_rating}`,
+        category: "imdb_rating", // Custom category to avoid default "LINKS_IMDB"
+        url: `stremio:///search?search=${encodeURIComponent(movie.imdb_rating)}`
+      });
+    }
     return Promise.resolve({
       meta: {
         id: movie.id,
@@ -161,7 +178,7 @@ builder.defineMetaHandler(({ id }) => {
         director: movie.director ? [movie.director] : [],
         cast: movie.cast || [],
         trailer: movie.trailer || undefined,
-        links: []
+        links: metaLinks
       }
     });
   }
