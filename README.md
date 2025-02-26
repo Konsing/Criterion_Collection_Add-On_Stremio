@@ -3,7 +3,7 @@
 
 # **🎬 Criterion Collection Stremio Add-on**  
 
-Enhance your **Stremio experience** with a dedicated add-on for the **Criterion Collection**. Browse classic and contemporary films with **high-quality metadata**, **posters**, and seamless **integration** into Stremio.  
+Enhance your **Stremio experience** with a dedicated add-on for the **Criterion Collection**. Browse classic and contemporary films with **high-quality metadata** (including **cast** and **director** details), **posters**, and seamless **integration** into Stremio.  
 
 ---
 
@@ -23,8 +23,8 @@ Enhance your **Stremio experience** with a dedicated add-on for the **Criterion 
 
 ---
 
-### **🔍 Meta View / Catalog View**
-> Browse the Criterion Collection with a sleek and intuitive catalog view.
+### **🔍 Meta View / Catalog View (NEW!)**
+> Browse the Criterion Collection with a sleek and intuitive catalog view, now enhanced with detailed metadata including **Cast** and **Director** information.
 
 <div style="display: flex; align-items: center; gap: 8px;">
    <img src="images/image1.png" alt="Criterion Collection Catalog View 1" width="200" height="600" style="object-fit: cover; object-position: top;">
@@ -35,7 +35,7 @@ Enhance your **Stremio experience** with a dedicated add-on for the **Criterion 
 
 ---
 
-### **🔹 Sorting Feature (NEW!)**  
+### **🔹 Sorting Feature**  
 > Easily sort movies by Year, Rating, and Runtime in ascending or descending order!  
 
 <img src="images/Sorting_Dropdown.png" alt="Criterion Collection Sorting Feature" width="800">
@@ -69,7 +69,7 @@ The add-on is now **hosted on Render.com** and can be added to **Stremio** using
 ## **📌 Features**
 - ✅ **Browse Criterion Collection movies** inside Stremio.
 - ✅ **Advanced Sorting** (Sort by Year, Rating, and Runtime).
-- ✅ **Movie Metadata** (Title, Poster, IMDb Rating, Runtime).
+- ✅ **Movie Metadata** (Title, Poster, IMDb Rating, Runtime, **Cast, and Director**).
 - ✅ **Dynamically loads** `criterion_movies.json` (No need to restart Stremio).
 - ✅ **Deployable on Render, VPS, or Docker**.
 
@@ -120,7 +120,7 @@ python scraper.py
 ---
 
 ## **🎬 Step 2: Run the Stremio Add-on**
-This script integrates the scraped data with Stremio Add-on SDK.
+This script integrates the scraped data with the Stremio Add-on SDK.
 
 ### **🔹 Run the Stremio Add-on**
 ```sh
